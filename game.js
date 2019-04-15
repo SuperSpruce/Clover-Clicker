@@ -34,7 +34,7 @@ var Clover3Cost = 2000;
 
 var Clover3 = 0;
 
-function buyC1(){
+function buyC3(){
     var C3C = Math.floor(Clover3Cost * Math.pow(1.05,Clover3));     //works out the cost of this Three Leaf Clover
     if(flower >= C3C){                                   //checks that the player can afford the Three Leaf Clover
         Clover3 = Clover3 + 1;                                   //increases number of Three Leaf Clovers

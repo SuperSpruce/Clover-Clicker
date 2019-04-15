@@ -30,12 +30,37 @@ window.setInterval(function(){
 }, 1000);
 
 
+var Clover3Cost = 2000;
+
+var Clover3 = 0;
+
+function buyC1(){
+    var C3C = Math.floor(Clover3Cost * Math.pow(1.05,Clover3));     //works out the cost of this Three Leaf Clover
+    if(flower >= C3C){                                   //checks that the player can afford the Three Leaf Clover
+        Clover3 = Clover3 + 1;                                   //increases number of Three Leaf Clovers
+    	flower = flower - C3C;                          //removes the flowers spent
+        document.getElementById('Clover3').innerHTML = Clover3;  //updates the number of Three Leaf Clovers for the user
+        document.getElementById('flower').innerHTML = flower;  //updates the number of flowers for the user
+    };
+    var nextC3C = Math.floor(Clover3Cost * Math.pow(1.05,Clover3));       //works out the cost of the next Three Leaf Clover
+    document.getElementById('C3C').innerHTML = nextC1C;  //updates the Three Leaf Clover cost for the user
+};
+
+window.setInterval(function(){
+	
+	MakeFlowersOutOfThinAir(50 * Clover3);
+	
+}, 3000);
+
+
 
 var game = {
   state: {
   flower: flower,
   Clover1: Clover1,
   Clover1Cost: Clover1Cost,
+  Clover3: Clover3,
+  Clover3Cost: Clover3Cost,
   tap: tap
 },
   
@@ -52,6 +77,8 @@ updateDisplay: function() {
         document.getElementById('flower').value = game.flower;
         document.getElementById('Clover1').value = game.Clover1;
         document.getElementById('Clover1Cost').value = game.Clover1Cost;
+	document.getElementById('Clover3').value = game.Clover3;
+        document.getElementById('Clover3Cost').value = game.Clover3Cost;
         document.getElementById('tap').value = game.tap;
     },
       

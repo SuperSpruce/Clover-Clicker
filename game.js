@@ -20,8 +20,7 @@ function buyC1(){
         document.getElementById('flower').innerHTML = flower;  //updates the number of flowers for the user
     };
     var nextC1C = Math.floor(Clover1Cost * Math.pow(1.03,Clover1));       //works out the cost of the next One Leaf Clover
-    document.getElementById('C1C').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
-	document.getElementById('nextC1C').innerHTML = Clover1Cost;
+    document.getElementById('Clover1Cost').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
 };
 
 window.setInterval(function(){
@@ -44,8 +43,7 @@ function buyC3(){
         document.getElementById('flower').innerHTML = flower;  //updates the number of flowers for the user
     };
     var nextC3C = Math.floor(Clover3Cost * Math.pow(1.05,Clover3));       //works out the cost of the next Three Leaf Clover
-    document.getElementById('C3C').innerHTML = nextC3C;  //updates the Three Leaf Clover cost for the user
-	document.getElementById('nextC3C').innerHTML = Clover3Cost;
+    document.getElementById('Clover3Cost').innerHTML = nextC3C;  //updates the Three Leaf Clover cost for the user
 };
 
 window.setInterval(function(){

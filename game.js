@@ -11,6 +11,8 @@ function MakeFlowersOutOfThinAir(C0){
 
 var Clover1 = 0;
 
+var Clover1Power = 1;
+
 function buyC1(){
     var C1C = Math.floor(Clover1Cost * Math.pow(1.03,Clover1));     //works out the cost of this One Leaf Clover
     if(flower >= C1C){                                   //checks that the player can afford the One Leaf Clover
@@ -33,6 +35,8 @@ window.setInterval(function(){
 var Clover3Cost = 2000;
 
 var Clover3 = 0;
+
+var Clover3Power = 50;
 
 function buyC3(){
     var C3C = Math.floor(Clover3Cost * Math.pow(1.05,Clover3));     //works out the cost of this Three Leaf Clover

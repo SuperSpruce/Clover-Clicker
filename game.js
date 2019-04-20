@@ -85,6 +85,23 @@ updateDisplay: function() {
         document.getElementById('Clover3Cost').value = game.Clover3Cost;
         document.getElementById('tap').value = game.tap;
     },
+	
+function save() {
+    localStorage.cc = btoa(JSON.stringify(game));
+};
+function load() {
+    if(!localStorage.cc) return;
+    game = JSON.parse(atob(localStorage.cc));
+
+    transformToDecimal(game)
+};
+function transformToDecimal(object) { 
+    for(i in object) {
+        if(typeof(object[i]) == "string" && !isNaN(new Decimal(object[i]).mag)) object[i] = new Decimal(object[i]); 
+        if(typeof(object[i]) == "object") transformToDecimal(object[i]) 
+    }
+}
+load();
       
 autosave: function(){
   var savePeriod = 15000; //15 seconds

@@ -52,13 +52,13 @@ window.setInterval(function(){
 
 	
 function save() {
-    localStorage.cc = btoa(JSON.stringify(game.state));
+    localStorage.cc = btoa(JSON.stringify(game));
 };
 function load() {
     if(!localStorage.cc) return;
     game = JSON.parse(atob(localStorage.cc));
 
-    transformToDecimal(game.state)
+    transformToDecimal(game)
 };
 function transformToDecimal(object) { 
     for(i in object) {

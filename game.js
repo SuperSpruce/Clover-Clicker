@@ -87,13 +87,13 @@ updateDisplay: function() {
     },
 	
 function save() {
-    localStorage.cc = btoa(JSON.stringify(game));
+    localStorage.cc = btoa(JSON.stringify(game.state));
 };
 function load() {
     if(!localStorage.cc) return;
     game = JSON.parse(atob(localStorage.cc));
 
-    transformToDecimal(game)
+    transformToDecimal(game.state)
 };
 function transformToDecimal(object) { 
     for(i in object) {
@@ -102,7 +102,7 @@ function transformToDecimal(object) {
     }
 }
 load();
-      
+
 autosave: function(){
   var savePeriod = 15000; //15 seconds
         window.setInterval(game.save, savePeriod);

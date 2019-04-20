@@ -1,11 +1,11 @@
 var game = {
   state: {
-  flower: flower,
-  Clover1: Clover1,
-  Clover1Cost: Clover1Cost,
-  Clover3: Clover3,
-  Clover3Cost: Clover3Cost,
-  tap: tap
+  flower: 0,
+  Clover1: 0,
+  Clover1Cost: 50,
+  Clover3: 0,
+  Clover3Cost: 2000,
+  tap: 1
 }
 };
 
@@ -61,16 +61,8 @@ game = {
   Clover3Cost: Clover3Cost,
   tap: tap
 },
-  
-updateDisplay: function() {
-        document.getElementById('flower').value = game.state.flower;
-        document.getElementById('Clover1').value = game.state.Clover1;
-        document.getElementById('Clover1Cost').value = game.state.Clover1Cost;
-	document.getElementById('Clover3').value = game.state.Clover3;
-        document.getElementById('Clover3Cost').value = game.state.Clover3Cost;
-        document.getElementById('tap').value = game.state.tap;
-    },
-}
+ 
+};
 	
 function save() {
     localStorage.cc = btoa(JSON.stringify(game.state));

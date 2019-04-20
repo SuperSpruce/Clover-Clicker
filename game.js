@@ -30,12 +30,11 @@ function buyC1(){
     };
     var nextC1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));       //works out the cost of the next One Leaf Clover
     document.getElementById('Clover1Cost').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
+	UpdateAverageFlowerPerSecond();
 };
 
 window.setInterval(function(){
-	
 	MakeFlowersOutOfThinAir(game.state.Clover1);
-	
 }, 1000);
 
 function buyC3(){
@@ -48,17 +47,14 @@ function buyC3(){
     };
     var nextC3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));       //works out the cost of the next Three Leaf Clover
     document.getElementById('Clover3Cost').innerHTML = nextC3C;  //updates the Three Leaf Clover cost for the user
+	UpdateAverageFlowerPerSecond();
 };
 
 window.setInterval(function(){
-	
 	MakeFlowersOutOfThinAir(50 * game.state.Clover3);
-	
 }, 3000);
 
-window.setInterval(function(){
-	UpdateAverageFlowerPerSecond();
-}, 40);
+
 
 
 	

@@ -62,7 +62,7 @@ game = {
   
 updateDisplay: function() {
         document.getElementById('flower').value = game.state.flower;
-        document.getElementById('Clover1').value = game..state.Clover1;
+        document.getElementById('Clover1').value = game.state.Clover1;
         document.getElementById('Clover1Cost').value = game.state.Clover1Cost;
 	document.getElementById('Clover3').value = game.state.Clover3;
         document.getElementById('Clover3Cost').value = game.state.Clover3Cost;

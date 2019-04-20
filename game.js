@@ -9,6 +9,12 @@ var game = {
 }
 };
 
+var AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
+
+function UpdateAverageFlowerPerSecond(){
+	document.getElementById('game.state.AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond
+};
+
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower += C0;
     document.getElementById("flower").innerHTML = game.state.flower;
@@ -50,8 +56,10 @@ window.setInterval(function(){
 	
 }, 3000);
 
-var AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
- document.getElementById('game.state.AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond
+window.setInterval(function(){
+	UpdateAverageFlowerPerSecond();
+}, 40);
+
 
 	
 function save() {

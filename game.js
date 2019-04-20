@@ -50,19 +50,6 @@ window.setInterval(function(){
 	
 }, 3000);
 
-
-
-game = {
-  state: {
-  flower: flower,
-  Clover1: Clover1,
-  Clover1Cost: Clover1Cost,
-  Clover3: Clover3,
-  Clover3Cost: Clover3Cost,
-  tap: tap
-},
- 
-};
 	
 function save() {
     localStorage.cc = btoa(JSON.stringify(game.state));

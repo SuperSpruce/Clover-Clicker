@@ -50,6 +50,8 @@ window.setInterval(function(){
 	
 }, 3000);
 
+var AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
+
 	
 function save() {
     localStorage.cc = btoa(JSON.stringify(game));

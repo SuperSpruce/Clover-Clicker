@@ -6,8 +6,9 @@ var game = {
   Clover3: Clover3,
   Clover3Cost: Clover3Cost,
   tap: tap
-};
 }
+};
+
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower += C0;
     document.getElementById("flower").innerHTML = game.state.flower;

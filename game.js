@@ -16,7 +16,7 @@ function MakeFlowersOutOfThinAir(C0){
 
 function buyC1(){
     var C1C = Math.floor(Clover1Cost * Math.pow(1.03,game.state.Clover1));     //works out the cost of this One Leaf Clover
-    if(flower >= C1C){                                   //checks that the player can afford the One Leaf Clover
+    if(game.state.flower >= C1C){                                   //checks that the player can afford the One Leaf Clover
         game.state.Clover1 = game.state.Clover1 + 1;                                   //increases number of One Leaf Clovers
     	game.state.flower = game.state.flower - C1C;                          //removes the flowers spent
         document.getElementById('Clover1').innerHTML = game.state.Clover1;  //updates the number of One Leaf Clovers for the user
@@ -34,7 +34,7 @@ window.setInterval(function(){
 
 function buyC3(){
     var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));     //works out the cost of this Three Leaf Clover
-    if(flower >= C3C){                                   //checks that the player can afford the Three Leaf Clover
+    if(game.state.flower >= C3C){                                   //checks that the player can afford the Three Leaf Clover
         game.state.Clover3 = game.state.Clover3 + 1;                                   //increases number of Three Leaf Clovers
     	game.state.flower = game.state.flower - C3C;                          //removes the flowers spent
         document.getElementById('Clover3').innerHTML = game.state.Clover3;  //updates the number of Three Leaf Clovers for the user

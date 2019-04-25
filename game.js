@@ -49,11 +49,14 @@ function buyC3(){
     document.getElementById('Clover3Cost').innerHTML = nextC3C;  //updates the Three Leaf Clover cost for the user
 };
 
-window.setInterval(
-	MakeFlowersOutOfThinAir(50 * game.state.Clover3), 3000);
+setInterval(function(){
+MakeFlowersOutOfThinAir(50 * game.state.Clover3)
 
-window.setInterval(
-	UpdateAverageFlowerPerSecond(), 40);
+}, 3000);
+
+setInterval(function(){
+	UpdateAverageFlowerPerSecond()
+}, 40);
 
 
 

@@ -35,7 +35,7 @@ function buyC1(){
 };
 
 setInterval(function() {
-	MakeFlowersOutOfThinAir(game.state.Clover1)}, 1000);
+	MakeFlowersOutOfThinAir(game.state.Clover1);}, 1000);
 
 function buyC3(){
     var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));     //works out the cost of this Three Leaf Clover

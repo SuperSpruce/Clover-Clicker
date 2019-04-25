@@ -8,9 +8,10 @@ var game = {
   tap: 1
 }
 };
+var AverageFlowerPerSecond;
 setInterval = (function() {
-var AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
-}
+AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
+}, 20
 	      );
 function UpdateAverageFlowerPerSecond(){
 	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond

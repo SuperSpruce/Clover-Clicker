@@ -5,13 +5,13 @@ var game = {
   Clover1Cost: 50,
   Clover3: 0,
   Clover3Cost: 2000,
-  tap: 1
+  tap: 1,
+  AverageFlowerPerSecond = 0
 }
 };
 
-var AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
-
 function UpdateAverageFlowerPerSecond(){
+	var AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
 	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond
 };
 

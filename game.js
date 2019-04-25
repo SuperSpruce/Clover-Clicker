@@ -9,7 +9,7 @@ var game = {
 }
 };
 var AverageFlowerPerSecond;
-setInterval = (function() {
+setInterval(function() {
 AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
 }, 20
 	      );
@@ -34,7 +34,7 @@ function buyC1(){
     document.getElementById('Clover1Cost').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
 };
 
-setInterval = (function() {
+setInterval(function() {
 	MakeFlowersOutOfThinAir(game.state.Clover1);}, 1000);
 
 function buyC3(){
@@ -49,12 +49,12 @@ function buyC3(){
     document.getElementById('Clover3Cost').innerHTML = nextC3C;  //updates the Three Leaf Clover cost for the user
 };
 
-setInterval = (function(){
+setInterval(function(){
 MakeFlowersOutOfThinAir(50 * game.state.Clover3)
 
 }, 3000);
 
-setInterval = (function(){
+setInterval(function(){
 	UpdateAverageFlowerPerSecond()
 }, 40);
 
@@ -79,7 +79,7 @@ function transformToDecimal(object) {
 }
 load();
 
-setInterval = (function(){
+setInterval(function(){
 	save();
 }, 15000);
     

@@ -34,8 +34,8 @@ function buyC1(){
     document.getElementById('Clover1Cost').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
 };
 
-window.setInterval(
-	MakeFlowersOutOfThinAir(game.state.Clover1), 1000);
+window.setInterval(function() {
+	MakeFlowersOutOfThinAir(game.state.Clover1)}, 1000);
 
 function buyC3(){
     var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));     //works out the cost of this Three Leaf Clover

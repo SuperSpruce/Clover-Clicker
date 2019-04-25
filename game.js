@@ -79,7 +79,7 @@ function transformToDecimal(object) {
 }
 load();
 
-window.setInterval(function(){
+setInterval = (function(){
 	save();
 }, 15000);
     

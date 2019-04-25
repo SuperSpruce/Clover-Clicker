@@ -34,7 +34,7 @@ function buyC1(){
     document.getElementById('Clover1Cost').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
 };
 
-window.setInterval(function() {
+setInterval(function() {
 	MakeFlowersOutOfThinAir(game.state.Clover1)}, 1000);
 
 function buyC3(){

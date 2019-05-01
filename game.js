@@ -3,9 +3,12 @@ var game = {
   flower: 0,
   Clover1: 0,
   Clover1Cost: 50,
+  Clover1Power: 0,
   Clover3: 0,
   Clover3Cost: 2000,
-  tap: 1
+  Clover3Power: 0,
+  tap: 1,
+	  Up1A: false
 }
 };
 var AverageFlowerPerSecond;
@@ -35,7 +38,7 @@ function buyC1(){
 };
 
 setInterval(function() {
-	MakeFlowersOutOfThinAir(game.state.Clover1);}, 1000);
+	MakeFlowersOutOfThinAir(game.state.Clover1Power);}, 1000);
 
 function buyC3(){
     var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));     //works out the cost of this Three Leaf Clover
@@ -50,14 +53,22 @@ function buyC3(){
 };
 
 setInterval(function(){
-MakeFlowersOutOfThinAir(50 * game.state.Clover3)
-
+MakeFlowersOutOfThinAir(game.state.Clover3Power)
 }, 3000);
 
 setInterval(function(){
 	UpdateAverageFlowerPerSecond()
 }, 40);
 
+function Up1A() {
+	if (game.state.flower >= 500) {
+		game.state.flower = game.state.flower - 500;
+		game.state.Up1A = true 
+	};
+
+if (game.state.Up1A = true) {
+	Clover1Power = Clover1Power * 2
+};
 
 
 

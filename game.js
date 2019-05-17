@@ -67,7 +67,7 @@ function Up1A() {
 	};
 
 if (game.state.Up1A = true) {
-	Clover1Power = Clover1Power * 2
+	game.state.Clover1Power = game.state.Clover1Power * 2
 };
 
 

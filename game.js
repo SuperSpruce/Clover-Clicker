@@ -1,14 +1,14 @@
 var game = {
   state: {
-  flower: 0,
-  Clover1: 0,
-  Clover1Cost: 50,
-  Clover1Power: 0,
-  Clover3: 0,
-  Clover3Cost: 2000,
-  Clover3Power: 0,
-  tap: 1,
-	  Up1A: false
+flower: 0,
+	Clover1: 0,
+	Clover1Cost: 50,
+	Clover1Power: 0,
+	Clover3: 0,
+	Clover3Cost: 2000,
+	Clover3Power: 0,
+	tap: 1,
+	upgrades = []
 }
 };
 var AverageFlowerPerSecond;

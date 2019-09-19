@@ -66,7 +66,7 @@ MakeFlowersOutOfThinAir(50 * game.state.Clover3)
 
 }, 3000);
 setInterval(function(){
-MakeFlowersOutOfThinAir(6000 * game.state.Clover3)
+MakeFlowersOutOfThinAir(6000 * game.state.Clover4)
 
 }, 4000);
 

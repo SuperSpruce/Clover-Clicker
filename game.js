@@ -143,7 +143,6 @@ function buyU5(){
   if (game.state.flower >= 500) {
     game.state.flower -= 500
     game.state.UpgradesBought[4] = 2
-    game.state.Clover1 *= 2
   }
 }
 
@@ -158,7 +157,6 @@ function buyU6(){
   if (game.state.flower >= 500000) {
     game.state.flower -= 500000
     game.state.UpgradesBought[5] = 2
-    game.state.Clover1 *= 2
   }
 }
 
@@ -173,7 +171,6 @@ function buyU7(){
   if (game.state.flower >= 5000000) {
     game.state.flower -= 5000000
     game.state.UpgradesBought[6] = 2
-    game.state.Clover1 *= 2
   }
 }
 
@@ -188,7 +185,6 @@ function buyU8(){
   if (game.state.flower >= 25000000) {
     game.state.flower -= 25000000
     game.state.UpgradesBought[7] = 2
-    game.state.Clover1 *= 2
   }
 }
 
@@ -203,7 +199,6 @@ function buyU9(){
   if (game.state.flower >= 3000000) {
     game.state.flower -= 3000000
     game.state.UpgradesBought[8] = 3
-    game.state.Clover1 *= 3
   }
 }
 
@@ -218,9 +213,6 @@ function buyU10(){
   if (game.state.flower >= 1000000) {
     game.state.flower -= 1000000
     game.state.UpgradesBought[9] = 2.5
-    game.state.Clover1 *= 2.5
-    game.state.Clover3 *= 2.5
-    game.state.Clover4 *= 2.5
   }
 }
 
@@ -235,9 +227,6 @@ function buyU11(){
   if (game.state.flower >= 10000000) {
     game.state.flower -= 10000000
     game.state.UpgradesBought[10] = 2
-    game.state.Clover1 *= 2
-    game.state.Clover3 *= 2
-    game.state.Clover4 *= 2
   }
 }
 
@@ -252,9 +241,6 @@ function buyU12(){
   if (game.state.flower >= 100000000) {
     game.state.flower -= 100000000
     game.state.UpgradesBought[11] = 2
-    game.state.Clover1 *= 2
-    game.state.Clover3 *= 2
-    game.state.Clover4 *= 2
   }
 }
 
@@ -269,9 +255,6 @@ function buyU13(){
   if (game.state.flower >= 1000000000) {
     game.state.flower -= 1000000000
     game.state.UpgradesBought[12] = 3
-    game.state.Clover1 *= 3
-    game.state.Clover3 *= 3
-    game.state.Clover4 *= 3
   }
 }
 

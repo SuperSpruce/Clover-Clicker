@@ -78,7 +78,7 @@ setInterval(function(){
 function buyU1(){
   if (game.state.flower >= 1000) {
     game.state.flower -= 1000
-    game.state.tap = 10
+    game.state.tap += 9
     document.getElementById('tap').innerHTML = game.state.tap;
     game.state.UpgradesBought[0] = 1
   }

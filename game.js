@@ -6,13 +6,14 @@ var game = {
   Clover3: 0,
   Clover3Cost: 2000,
   Clover4: 0,
-  Clover4Cost: 2000000,
+  Clover4Cost: 20000000,
+  UpgradesBought: [0,0,0,0,0],
   tap: 1
 }
 };
 var AverageFlowerPerSecond;
 setInterval(function() {
-AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
+AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3) + (1500 * game.state.Clover4))
 }, 20
 	      );
 function UpdateAverageFlowerPerSecond(){
@@ -74,10 +75,20 @@ setInterval(function(){
 	UpdateAverageFlowerPerSecond()
 }, 40);
 
+function buyU1(){
+  if (game.state.flower >= 1000){
+    game.state.flower -= 1000
+    game.state.tap = 10
+    document.getElementById('tap').innerHTML = game.state.tap;
+  }
+}
 
+setInterval(function(){
+	if (UpgradesBought[0] == 1){
+  U1.style.display = 'none'
+  }
+}, 40);
 
-
-	
 function save() {
     localStorage.cc = btoa(JSON.stringify(game));
 };
@@ -87,10 +98,10 @@ function load() {
 
     transformToDecimal(game)
 };
-function transformToDecimal(object) { 
+function transformToDecimal(object) {
     for(i in object) {
-        if(typeof(object[i]) == "string" && !isNaN(new Decimal(object[i]).mag)) object[i] = new Decimal(object[i]); 
-        if(typeof(object[i]) == "object") transformToDecimal(object[i]) 
+        if(typeof(object[i]) == "string" && !isNaN(new Decimal(object[i]).mag)) object[i] = new Decimal(object[i]);
+        if(typeof(object[i]) == "object") transformToDecimal(object[i])
     }
 }
 load();
@@ -98,4 +109,3 @@ load();
 setInterval(function(){
 	save();
 }, 15000);
-    

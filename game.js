@@ -6,7 +6,7 @@ var game = {
   Clover3: 0,
   Clover3Cost: 2000,
   Clover4: 0,
-  Clover4Cost: 0,
+  Clover4Cost: 2000000,
   tap: 1
 }
 };

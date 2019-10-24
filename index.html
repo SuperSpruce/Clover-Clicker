@@ -4,26 +4,50 @@
 		<link rel="stylesheet" type="text/css" href="interface.css" />
 	</head>
 	<body>
+		<div id="navigateButtons">
+                    <button onclick="tab('cloverTab')">Clovers</button>
+                    <button onclick="tab('upgradeTab1')">Upgrades</button>
+		    <button onclick="tab('optionsTab')">Options</button>
+                </div>
+		
+		
+		
+		<div id = "cloverTab"> //Clover tab
+			
+			
 		Flowers: <span id="flower">0</span>
 		<br />
-		<button onclick="MakeFlowersOutOfThinAir(game.state.tap)">Click for a Flower!</button>
+	      	<button onclick="MakeFlowersOutOfThinAir(game.state.tap)">Click for a Flower!</button>
 		<br />
-    Flowers per click: <span id="tap">1</span><br />
+			
+                Flowers per click: <span id="tap">1</span><br />
 		Flowers per second: <span id="AverageFlowerPerSecond">0</span>
 		<br /><br />
+			
 		<button onclick="buyC1()">Buy a 1 Leaf Clover</button> <span id="Clover1Power">1</span> flowers per One Leaf Clover every second
 		<br />
 		One Leaf Clovers: <span id="Clover1">0</span>
 		<br />
 		 Cost: <span id="Clover1Cost">50</span> flowers<br /><br />
+			
 		<button onclick="buyC3()">Buy a 3 Leaf Clover</button> <span id="Clover3Power">50</span> flowers per Three Leaf Clover every three seconds
 		<br />
 		Three Leaf Clovers: <span id="Clover3">0</span>
 		<br />
 		 Cost: <span id="Clover3Cost">2000</span> flowers
 		<br /><br />
+			
+		</div>
+		
+		
+		<div id = "upgradeTab1"> // The 1st upgrade tab
+			
 		<button onclick="Up1A">
-		<br /><br /><br />
+		
+		</div>
+			
+			
+		<div id = "optionsTab">
     Manual Save:  <button type='button' id='input_save' onclick = "save()">save</button></br>
     Manual Load:  <button type='button' id='input_load' onclick = "load()">load</button>
     <script type="text/javascript" src="game.js"></script>

@@ -73,6 +73,16 @@ if (game.state.Up1A = true) {
 
 
 	
+function tab(tab) {
+  // hide all your tabs, then show the one the user selected.
+  document.getElementById("cloverTab").style.display = "none"
+  document.getElementById("upgradeTab1").style.display = "none"
+  document.getElementById("optionsTab").style.display = "none"
+  document.getElementById(tab).style.display = "inline-block"
+}
+// go to a tab for the first time, so not all show
+tab("cloverTab")
+
 function save() {
     localStorage.cc = btoa(JSON.stringify(game));
 };

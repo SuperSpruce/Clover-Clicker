@@ -1,21 +1,22 @@
 var game = {
-  state: {
-flower: 0,
-	Clover1: 0,
-	Clover1Cost: 50,
-	Clover1Power: 0,
-	Clover3: 0,
-	Clover3Cost: 2000,
-	Clover3Power: 0,
-	tap: 1,
-	upgrades = []
-}
+	state: {
+		flower: 0,
+		Clover1: 0,
+		Clover1Cost: 50,
+		Clover1Power: 0,
+		Clover3: 0,
+		Clover3Cost: 2000,
+		Clover3Power: 0,
+		tap: 1,
+		upgrades: []
+	}
 };
+
 var AverageFlowerPerSecond;
 setInterval(function() {
-AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
-}, 20
-	      );
+	AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
+}, 20);
+
 function UpdateAverageFlowerPerSecond(){
 	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond
 };
@@ -53,7 +54,7 @@ function buyC3(){
 };
 
 setInterval(function(){
-MakeFlowersOutOfThinAir(game.state.Clover3Power)
+	MakeFlowersOutOfThinAir(game.state.Clover3Power)
 }, 3000);
 
 setInterval(function(){
@@ -64,43 +65,46 @@ function Up1A() {
 	if (game.state.flower >= 500) {
 		game.state.flower = game.state.flower - 500;
 		game.state.Up1A = true 
-	};
+	}
 
-if (game.state.Up1A = true) {
-	game.state.Clover1Power = game.state.Clover1Power * 2
-};
+	if (game.state.Up1A = true) {
+		game.state.Clover1Power = game.state.Clover1Power * 2
+	}
+}
 
 
 
 	
 function tab(tab) {
-  // hide all your tabs, then show the one the user selected.
-  document.getElementById("cloverTab").style.display = "none"
-  document.getElementById("upgradeTab1").style.display = "none"
-  document.getElementById("optionsTab").style.display = "none"
-  document.getElementById(tab).style.display = "inline-block"
+	// hide all your tabs, then show the one the user selected.
+	document.getElementById("cloverTab").style.display = "none"
+	document.getElementById("upgradeTab1").style.display = "none"
+	document.getElementById("optionsTab").style.display = "none"
+	document.getElementById(tab).style.display = "inline-block"
 }
 // go to a tab for the first time, so not all show
 tab("cloverTab")
 
 function save() {
     localStorage.cc = btoa(JSON.stringify(game));
-};
+}
+
 function load() {
     if(!localStorage.cc) return;
     game = JSON.parse(atob(localStorage.cc));
 
     transformToDecimal(game)
-};
+}
+
 function transformToDecimal(object) { 
     for(i in object) {
         if(typeof(object[i]) == "string" && !isNaN(new Decimal(object[i]).mag)) object[i] = new Decimal(object[i]); 
         if(typeof(object[i]) == "object") transformToDecimal(object[i]) 
     }
 }
+
 load();
 
 setInterval(function(){
 	save();
 }, 15000);
-    

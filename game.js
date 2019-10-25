@@ -108,3 +108,15 @@ load();
 setInterval(function(){
 	save();
 }, 15000);
+
+function hardReset() {
+	game.state.flower = 0;
+	game.state.Clover1 = 0;
+	game.state.Clover1Cost = 50;
+	game.state.Clover1Power = 0;
+	game.state.Clover3 = 0;
+	game.state.Clover3Cost = 0;
+	game.state.Clover3Power = 0;
+	game.state.tap = 0;
+	game.state.upgrades = [];
+}

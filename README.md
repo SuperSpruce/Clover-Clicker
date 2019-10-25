@@ -7,3 +7,5 @@ This will still be a decent game, like cookie clicker, with a prestige system an
 Developer and tester: SuperSpruce
 
 Co-developer: Falling Mountain
+
+Contributor: Reinhardt-C

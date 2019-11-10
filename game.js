@@ -18,7 +18,7 @@ setInterval(function() {
 }, 20);
 
 function UpdateAverageFlowerPerSecond(){
-	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond
+	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond;
 };
 
 function MakeFlowersOutOfThinAir(C0){

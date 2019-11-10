@@ -61,7 +61,7 @@ setInterval(function(){
 }, 3000);
 	
 function buyC4(){
-    var C4C = Math.floor(game.state.Clover3Cost * Math.pow(1.20,game.state.Clover3));
+    var C4C = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
     if(game.state.flower >= C4C){
         game.state.Clover4 = game.state.Clover4 + 1;
     	game.state.flower = game.state.flower - C4C;

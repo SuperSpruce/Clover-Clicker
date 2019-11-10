@@ -14,7 +14,7 @@ var game = {
 
 var AverageFlowerPerSecond;
 setInterval(function() {
-	AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
+	AverageFlowerPerSecond = Math.round(game.state.Clover1 * game.state.Clover1Mult + (16.6666667 * game.state.Clover3 * game.state.Clover3Mult))
 }, 20);
 
 function UpdateAverageFlowerPerSecond(){

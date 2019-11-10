@@ -3,12 +3,12 @@ var game = {
 		flower: 0,
 		Clover1: 0,
 		Clover1Cost: 50,
-		Clover1Power: 0,
+		Clover1Mult: 1,
 		Clover3: 0,
 		Clover3Cost: 2000,
-		Clover3Power: 0,
+		Clover3Mult: 1,
 		tap: 1,
-		upgrades: []
+		upgrades: [false]
 	}
 };
 
@@ -39,7 +39,7 @@ function buyC1(){
 };
 
 setInterval(function() {
-	MakeFlowersOutOfThinAir(game.state.Clover1Power);}, 1000);
+	MakeFlowersOutOfThinAir(game.state.Clover1 * game.state.Clover1Mult);}, 1000);
 
 function buyC3(){
     var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));     //works out the cost of this Three Leaf Clover
@@ -61,14 +61,13 @@ setInterval(function(){
 	UpdateAverageFlowerPerSecond()
 }, 40);
 
-function Up1A() {
-	if (game.state.flower >= 500) {
+function Up1A() 
+{
+	if (game.state.flower >= 500 && !game.state.upgrades[0]) 
+	{
 		game.state.flower = game.state.flower - 500;
-		game.state.Up1A = true 
-	}
-
-	if (game.state.Up1A = true) {
-		game.state.Clover1Power = game.state.Clover1Power * 2
+		game.state.upgrades[0] = true;
+		game.state.Clover1Mult = game.state.Clover1Mult * 2;
 	}
 }
 
@@ -113,10 +112,10 @@ function hardReset() {
 	game.state.flower = 0;
 	game.state.Clover1 = 0;
 	game.state.Clover1Cost = 50;
-	game.state.Clover1Power = 0;
+	game.state.Clover1Mult = 1;
 	game.state.Clover3 = 0;
-	game.state.Clover3Cost = 0;
-	game.state.Clover3Power = 0;
-	game.state.tap = 0;
-	game.state.upgrades = [];
+	game.state.Clover3Cost = 2000;
+	game.state.Clover3Mult = 1;
+	game.state.tap = 1;
+	game.state.upgrades = [false];
 }

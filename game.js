@@ -54,7 +54,7 @@ function buyC3(){
 };
 
 setInterval(function(){
-	MakeFlowersOutOfThinAir(game.state.Clover3Power)
+	MakeFlowersOutOfThinAir(game.state.Clover3 * game.state.Clover3Mult * 50)
 }, 3000);
 
 setInterval(function(){

@@ -14,7 +14,7 @@
 		</div>
 		
 		<div id = "cloverTab">
-			Flowers: <span id="flower">0</span>
+			<br> Flowers: <span id="flower">0</span>
 			<br>
 				<button onclick="MakeFlowersOutOfThinAir(game.state.tap)">Click for a Flower!</button>
 			<br>
@@ -27,7 +27,7 @@
 			<br>
 			One Leaf Clovers: <span id="Clover1">0</span>
 			<br>
-			Cost: <span id="Clover1Cost">50</span> flowers<br><br>
+			Cost: <span id="Clover1Cost">40</span> flowers<br><br>
 				
 			<button onclick="buyC3()">Buy a 3 Leaf Clover</button> <span id="Clover3Mult">50</span> flowers per Three Leaf Clover every three seconds
 			<br>
@@ -45,13 +45,31 @@
 		</div>
 		
 		
-		<div id = "upgradeTab1">	
+		<div id = "upgradeTab1">
+			<br> Flowers: <span id="flower">0</span>
+			<br>
+				<button onclick="MakeFlowersOutOfThinAir(game.state.tap)">Click for a Flower!</button>
+			<br>
+				
+			Flowers per click: <span id="tap">1</span><br>
+			Flowers per second: <span id="AverageFlowerPerSecond">0</span>
+			<br><br>
+			
+			
 			<button onclick="Up1A()">Bigger leaves</button> <br>
 			Double the production of one leaf clovers.    Cost: 500 flowers
 		</div>
 			
 			
 		<div id = "optionsTab">
+			<br> Flowers: <span id="flower">0</span>
+			<br>
+				<button onclick="MakeFlowersOutOfThinAir(game.state.tap)">Click for a Flower!</button>
+			<br>
+				
+			Flowers per click: <span id="tap">1</span><br>
+			Flowers per second: <span id="AverageFlowerPerSecond">0</span>
+			<br><br>
 			Manual Save:  <button type='button' id='input_save' onclick = "save()">save</button></br>
 			Manual Load:  <button type='button' id='input_load' onclick = "load()">load</button>
 		<br><br>

@@ -11,18 +11,20 @@ var game = {
 		Clover4Cost: 2e7,
 		Clover4Mult: 1,
 		tap: 1,
-		upgrades: [false]
+		let upgList = 
+		[
+                new Upgrade('Bigger Leaves 1', 0, 500, 'Double the flower production of 1-leaf clovers'),
+                new Upgrade('Bigger Leaves 2', 1, 5e5, 'Double the flower production of 1-leaf clovers'),
+		new Upgrade('Bigger Leaves 3', 2, 5e6, 'Double the flower production of 1-leaf clovers'),
+		new Upgrade('Bigger Leaves 4', 3, 2.5e7, 'Double the flower production of 1-leaf clovers'),
+		new Upgrade('Triplet Leaves', 4, 3e6, 'Triple the flower production of 3-leaf clovers'),
+                ]
 	}
 };
 
 var AverageFlowerPerSecond;
-setInterval(function() {
-	AverageFlowerPerSecond = Math.round(game.state.Clover1 * game.state.Clover1Mult + (16.6666667 * game.state.Clover3 * game.state.Clover3Mult) + 1500 * game.state.Clover4 * game.state.Clover4Mult)
-}, 20);
 
-function UpdateAverageFlowerPerSecond(){
-	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond;
-};
+
 
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower += C0;
@@ -76,19 +78,26 @@ setInterval(function(){
 	MakeFlowersOutOfThinAir(game.state.Clover4 * game.state.Clover4Mult * 6000)
 }, 4000);
 
-setInterval(function(){
-	UpdateAverageFlowerPerSecond()
-}, 40);
 
-function Up1A() 
-{
-	if (game.state.flower >= 500 && !game.state.upgrades[0]) 
-	{
-		game.state.flower = game.state.flower - 500;
-		game.state.upgrades[0] = true;
-		game.state.Clover1Mult = game.state.Clover1Mult * 2;
-	}
-}
+function UpdateAverageFlowerPerSecond(){
+	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond;
+};
+
+setInterval(function() {
+    AverageFlowerPerSecond = Math.round(game.state.Clover1 * game.state.Clover1Mult + (16.6666667 * game.state.Clover3 * game.state.Clover3Mult) + 1500 * game.state.Clover4 * game.state.Clover4Mult)
+    UpdateAverageFlowerPerSecond()
+    for (let i of upgList) i.updateButton();
+    game.state.Clover1Mult = 1;
+    game.state.Clover3Mult = 1;
+    game.state.Clover4Mult = 1;
+    game.state.ClickMult = 1;
+    
+    for( k = 0; k < 4; k++)
+    {
+	if (game.state.upgrades[k]) game.state.Clover1Mult *= 2;
+    }
+	if (game.state.upgrades[4]) game.state.Clover3Mult *= 2;
+}, 33);
 
 
 

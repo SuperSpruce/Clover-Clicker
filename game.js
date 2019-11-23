@@ -191,7 +191,14 @@ function load() {
     if(!localStorage.cc) return;
     game = JSON.parse(atob(localStorage.cc));
 
-    transformToDecimal(game)
+    transformToDecimal(game);
+    document.getElementById('flower').innerHTML = game.state.flower;
+    document.getElementById('Clover1').innerHTML = game.state.Clover1;
+    document.getElementById('Clover1Cost').innerHTML = game.state.Clover1Cost;
+    document.getElementById('Clover3').innerHTML = game.state.Clover3;
+    document.getElementById('Clover3Cost').innerHTML = game.state.Clover3Cost;
+    document.getElementById('Clover4').innerHTML = game.state.Clover4;
+    document.getElementById('Clover4Cost').innerHTML = game.state.Clover4Cost;
 }
 
 function transformToDecimal(object) { 

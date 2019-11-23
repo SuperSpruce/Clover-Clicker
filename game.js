@@ -16,6 +16,7 @@ class Upgrade {
 	createButton() {
 		let d = document.createElement('div');
 		d.id = 'upg' + this.index + 'd';
+		d.className = 'upgDiv';
 		let b = document.createElement('button');
 		b.id = 'upg' + this.index + 'b';
 		b.className = 'red';

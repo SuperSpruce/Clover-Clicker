@@ -14,3 +14,9 @@ font size: 16px
 .blue {
 	background-color: #90CCFF;
 }
+
+.upgDiv {
+	border: solid 2px black;
+	text-align: center;
+	padding: 2px;
+}

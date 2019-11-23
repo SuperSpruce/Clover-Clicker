@@ -44,6 +44,13 @@ class Upgrade {
 	}
 }
 
+let upgList = [
+	new Upgrade('Bigger Leaves 1', 0, 500, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Bigger Leaves 2', 1, 5e5, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Bigger Leaves 3', 2, 5e6, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Bigger Leaves 4', 3, 2.5e7, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Triplet Leaves', 4, 3e6, 'Triple the flower production of 3-leaf clovers')
+]
 
 var game = {
 	state: {
@@ -57,21 +64,11 @@ var game = {
 		Clover4: 0,
 		Clover4Cost: 2e7,
 		Clover4Mult: 1,
-		tap: 1,
-		let upgList = 
-		[
-                new Upgrade('Bigger Leaves 1', 0, 500, 'Double the flower production of 1-leaf clovers'),
-                new Upgrade('Bigger Leaves 2', 1, 5e5, 'Double the flower production of 1-leaf clovers'),
-		new Upgrade('Bigger Leaves 3', 2, 5e6, 'Double the flower production of 1-leaf clovers'),
-		new Upgrade('Bigger Leaves 4', 3, 2.5e7, 'Double the flower production of 1-leaf clovers'),
-		new Upgrade('Triplet Leaves', 4, 3e6, 'Triple the flower production of 3-leaf clovers'),
-                ]
+		tap: 1
 	}
 };
 
 var AverageFlowerPerSecond;
-
-
 
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower += C0;
@@ -139,15 +136,11 @@ setInterval(function() {
     game.state.Clover4Mult = 1;
     game.state.ClickMult = 1;
     
-    for( k = 0; k < 4; k++)
-    {
-	if (game.state.upgrades[k]) game.state.Clover1Mult *= 2;
+    for( k = 0; k < 4; k++) {
+		if (game.state.upgrades[k]) game.state.Clover1Mult *= 2;
     }
 	if (game.state.upgrades[4]) game.state.Clover3Mult *= 2;
 }, 33);
-
-
-
 	
 function tab(tab) {
 	// hide all your tabs, then show the one the user selected.
@@ -178,6 +171,7 @@ function transformToDecimal(object) {
 }
 
 load();
+for (let i of upgList) i.createButton();
 
 setInterval(function(){
 	save();
@@ -195,5 +189,6 @@ function hardReset() {
 	game.state.Clover4Cost = 2e7;
 	game.state.Clover4Mult = 1;
 	game.state.tap = 1;
-	game.state.upgrades = [false];
+	game.state.upgrades = new Array(upgList.length);
+	game.state.upgrades.fill(false);
 }

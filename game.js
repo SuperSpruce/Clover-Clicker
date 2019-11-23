@@ -1,3 +1,50 @@
+class Upgrade {
+	constructor(name, index, price, description) {
+		this.name = name;
+		this.index = index;
+		this.price = price;
+		this.description = description || '';
+	}
+	
+	buy() {
+		if (!game.state.upgrades[this.index] && game.state.flower >= this.price) {
+			game.state.upgrades[this.index] = true;
+			game.state.flower -= this.price;
+		}
+	}
+	
+	createButton() {
+		let d = document.createElement('div');
+		d.id = 'upg' + this.index + 'd';
+		let b = document.createElement('button');
+		b.id = 'upg' + this.index + 'b';
+		b.className = 'red';
+		b.innerHTML = this.name;
+		b.setAttribute('onclick', 'upgList[' + this.index + '].buy()');
+		let p = document.createElement('p');
+		p.id = 'upg' + this.index + 'p';
+		p.innerHTML = this.description + '&nbsp;Cost: ' + this.price;;
+		d.appendChild(b);
+		d.appendChild(p);
+		document.getElementById('upgradesDiv').appendChild(d);
+	}
+	
+	updateButton() {
+		let str = '';
+		if (game.state.upgrades[this.index]) {
+			str = 'blue';
+		} else {
+			if (game.state.flower >= this.price) {
+				str = 'green';
+			} else {
+				str = 'red';
+			}
+		}
+		document.getElementById('upg' + this.index + 'b').className = document.getElementById('upg' + this.index + 'b').className.replace(/(green|red|blue)/, str);
+	}
+}
+
+
 var game = {
 	state: {
 		flower: 0,

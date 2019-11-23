@@ -50,7 +50,15 @@ let upgList = [
 	new Upgrade('Bigger Leaves 2', 1, 5e5, 'Double the flower production of 1-leaf clovers'),
 	new Upgrade('Bigger Leaves 3', 2, 5e6, 'Double the flower production of 1-leaf clovers'),
 	new Upgrade('Bigger Leaves 4', 3, 2.5e7, 'Double the flower production of 1-leaf clovers'),
-	new Upgrade('Triplet Leaves', 4, 3e6, 'Triple the flower production of 3-leaf clovers')
+	new Upgrade('Triplet Leaves', 4, 3e6, 'Triple the flower production of 3-leaf clovers'),
+	new Upgrade('Make more flowers out of thin air', 5, 1000, 'Adds 9 to flowers per click'),
+	new Upgrade('Make even more flowers out of thin air', 6, 10000, 'Flowers per click is multiplied by 4'),
+	new Upgrade('Make yet more flowers out of thin air', 7, 2e5, 'Flowers per click is multiplied by 5'),
+	new Upgrade('Make flowers out of trash', 8, 8e6, 'Flowers per click is multiplied by 10'),
+	new Upgrade('The Millionaire Upgrade', 9, 1e6, 'You get 2.5x as many flowers from all sources'),
+	new Upgrade('Multimillionaire Upgrade', 10, 1e7, 'You get 2x as many flowers from all sources'),
+	new Upgrade('Polymillionaire Upgrade', 11, 1e8, 'You get 2x as many flowers from all sources'),
+	new Upgrade('Billionaire Upgrade', 12, 1e9, 'You get 3x as many flowers from all sources'),
 ]
 
 var game = {
@@ -135,13 +143,28 @@ setInterval(function() {
     game.state.Clover1Mult = 1;
     game.state.Clover3Mult = 1;
     game.state.Clover4Mult = 1;
-    game.state.ClickMult = 1;
+    game.state.tap = 1;
     
     for( k = 0; k < 4; k++) {
 		if (game.state.upgrades[k]) game.state.Clover1Mult *= 2;
     }
 	if (game.state.upgrades[4]) game.state.Clover3Mult *= 2;
+	if (game.state.upgrades[5]) game.state.tap += 9;
+	if (game.state.upgrades[6]) game.state.tap *= 4;
+	if (game.state.upgrades[7]) game.state.tap *= 5;
+	if (game.state.upgrades[8]) game.state.tap *= 10;
+	if (game.state.upgrades[9]) multiplyEverything(2.5);
+	if (game.state.upgrades[10]) multiplyEverything(2);
+	if (game.state.upgrades[11]) multiplyEverything(2);
+	if (game.state.upgrades[12]) multiplyEverything(3);
 }, 33);
+
+function multiplyEverything(a) {
+	game.state.tap *= a;
+	game.state.Clover1Mult *= a;
+	game.state.Clover3Mult *= a;
+	game.state.Clover4Mult *= a;
+}
 	
 function tab(tab) {
 	// hide all your tabs, then show the one the user selected.

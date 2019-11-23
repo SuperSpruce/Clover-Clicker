@@ -144,7 +144,8 @@ function UpdateFlowerPerClick(){
 setInterval(function() {
     AverageFlowerPerSecond = Math.round(game.state.Clover1 * game.state.Clover1Mult + (16.6666667 * game.state.Clover3 * game.state.Clover3Mult) + 1500 * game.state.Clover4 * game.state.Clover4Mult);
     FlowerPerClick = tap;
-    UpdateAverageFlowerPerSecond()
+    UpdateAverageFlowerPerSecond();
+    UpdateFlowerPerClick();
     for (let i of upgList) i.updateButton();
     game.state.Clover1Mult = 1;
     game.state.Clover3Mult = 1;

@@ -178,6 +178,7 @@ function tab(tab) {
 	document.getElementById("cloverTab").style.display = "none"
 	document.getElementById("upgradeTab1").style.display = "none"
 	document.getElementById("optionsTab").style.display = "none"
+	document.getElementById("changelogTab").style.display = "none"
 	document.getElementById(tab).style.display = "inline-block"
 }
 // go to a tab for the first time, so not all show

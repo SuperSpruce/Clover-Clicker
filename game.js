@@ -155,7 +155,7 @@ setInterval(function() {
     for( k = 0; k < 4; k++) {
 		if (game.state.upgrades[k]) game.state.Clover1Mult *= 2;
     }
-	if (game.state.upgrades[4]) game.state.Clover3Mult *= 2;
+	if (game.state.upgrades[4]) game.state.Clover3Mult *= 3;
 	if (game.state.upgrades[5]) game.state.tap += 9;
 	if (game.state.upgrades[6]) game.state.tap *= 4;
 	if (game.state.upgrades[7]) game.state.tap *= 5;

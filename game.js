@@ -77,12 +77,24 @@ var game = {
 	}
 };
 
+
+
+
+function format(amount) {
+  let power = Math.floor(Math.log10(amount))
+  let mantissa = amount / Math.pow(10, power)
+  if (power < 6) return amount;
+	else {
+  return mantissa.toFixed(3) + "e" + power; }
+}
+
+
 var AverageFlowerPerSecond;
 var FlowerPerClick;
 
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower += C0;
-    document.getElementById("flower").innerHTML = game.state.flower;
+    document.getElementById("flower").innerHTML = format(game.state.flower);
 };
 
 function buyC1(){
@@ -90,11 +102,11 @@ function buyC1(){
     if(game.state.flower >= C1C){                                   //checks that the player can afford the One Leaf Clover
         game.state.Clover1 = game.state.Clover1 + 1;                                   //increases number of One Leaf Clovers
     	game.state.flower = game.state.flower - C1C;                          //removes the flowers spent
-        document.getElementById('Clover1').innerHTML = game.state.Clover1;  //updates the number of One Leaf Clovers for the user
-        document.getElementById('flower').innerHTML = game.state.flower;  //updates the number of flowers for the user
+        document.getElementById('Clover1').innerHTML = format(game.state.Clover1);  //updates the number of One Leaf Clovers for the user
+        document.getElementById('flower').innerHTML = format(game.state.flower);  //updates the number of flowers for the user
     };
     var nextC1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));       //works out the cost of the next One Leaf Clover
-    document.getElementById('Clover1Cost').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
+    document.getElementById('Clover1Cost').innerHTML = format(nextC1C);  //updates the One Leaf Clover cost for the user
 };
 
 setInterval(function() {
@@ -105,11 +117,11 @@ function buyC3(){
     if(game.state.flower >= C3C){
         game.state.Clover3 = game.state.Clover3 + 1;
     	game.state.flower = game.state.flower - C3C;
-        document.getElementById('Clover3').innerHTML = game.state.Clover3;
-        document.getElementById('flower').innerHTML = game.state.flower;
+        document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
+        document.getElementById('flower').innerHTML = format(game.state.flower);
     };
     var nextC3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
-    document.getElementById('Clover3Cost').innerHTML = nextC3C;
+    document.getElementById('Clover3Cost').innerHTML = format(nextC3C);
 };
 
 setInterval(function(){
@@ -121,11 +133,11 @@ function buyC4(){
     if(game.state.flower >= C4C){
         game.state.Clover4 = game.state.Clover4 + 1;
     	game.state.flower = game.state.flower - C4C;
-        document.getElementById('Clover4').innerHTML = game.state.Clover4;
-        document.getElementById('flower').innerHTML = game.state.flower;
+        document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
+        document.getElementById('flower').innerHTML = format(game.state.flower);
     };
     var nextC4C = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
-    document.getElementById('Clover4Cost').innerHTML = nextC4C;
+    document.getElementById('Clover4Cost').innerHTML = format(nextC4C);
 };
 	
 setInterval(function(){
@@ -134,11 +146,11 @@ setInterval(function(){
 
 
 function UpdateAverageFlowerPerSecond(){
-	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond;
+	document.getElementById('AverageFlowerPerSecond').innerHTML = format(AverageFlowerPerSecond);
 };
 
 function UpdateFlowerPerClick(){
-	document.getElementById('FlowerPerClick').innerHTML = FlowerPerClick;
+	document.getElementById('FlowerPerClick').innerHTML = format(FlowerPerClick);
 };
 
 setInterval(function() {
@@ -178,6 +190,7 @@ function tab(tab) {
 	document.getElementById("cloverTab").style.display = "none"
 	document.getElementById("upgradeTab1").style.display = "none"
 	document.getElementById("optionsTab").style.display = "none"
+	document.getElementById("changelogTab").style.display = "none"
 	document.getElementById(tab).style.display = "inline-block"
 }
 // go to a tab for the first time, so not all show
@@ -192,13 +205,13 @@ function load() {
     game = JSON.parse(atob(localStorage.cc));
 
     transformToDecimal(game);
-    document.getElementById('flower').innerHTML = game.state.flower;
-    document.getElementById('Clover1').innerHTML = game.state.Clover1;
-    document.getElementById('Clover1Cost').innerHTML = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));
-    document.getElementById('Clover3').innerHTML = game.state.Clover3;
-    document.getElementById('Clover3Cost').innerHTML = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
-    document.getElementById('Clover4').innerHTML = game.state.Clover4;
-    document.getElementById('Clover4Cost').innerHTML = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
+    document.getElementById('flower').innerHTML = format(game.state.flower);
+    document.getElementById('Clover1').innerHTML = format(game.state.Clover1);
+    document.getElementById('Clover1Cost').innerHTML = format(Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1)));
+    document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
+    document.getElementById('Clover3Cost').innerHTML = format(Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3)));
+    document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
+    document.getElementById('Clover4Cost').innerHTML = format(Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4)));
 }
 
 function transformToDecimal(object) { 

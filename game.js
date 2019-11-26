@@ -94,7 +94,7 @@ var FlowerPerClick;
 
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower += C0;
-    document.getElementById("flower").innerHTML = game.state.flower;
+    document.getElementById("flower").innerHTML = format(game.state.flower);
 };
 
 function buyC1(){
@@ -205,7 +205,7 @@ function load() {
     game = JSON.parse(atob(localStorage.cc));
 
     transformToDecimal(game);
-    document.getElementById('flower').innerHTML = game.state.flower;
+    document.getElementById('flower').innerHTML = format(game.state.flower);
     document.getElementById('Clover1').innerHTML = game.state.Clover1;
     document.getElementById('Clover1Cost').innerHTML = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));
     document.getElementById('Clover3').innerHTML = game.state.Clover3;

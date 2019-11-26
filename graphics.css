@@ -2,3 +2,21 @@ p: {
 background: #ddffaa
 font size: 16px
 }
+
+.red {
+	background-color: #FF7070;
+}
+
+.green {
+	background-color: #80ED80;
+}
+
+.blue {
+	background-color: #90CCFF;
+}
+
+.upgDiv {
+	border: solid 2px black;
+	text-align: center;
+	padding: 2px;
+}

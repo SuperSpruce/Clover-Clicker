@@ -1,25 +1,100 @@
-var game = {
-  state: {
-  flower: 0,
-  Clover1: 0,
-  Clover1Cost: 50,
-  Clover3: 0,
-  Clover3Cost: 2000,
-  tap: 1
+class Upgrade {
+	constructor(name, index, price, description) {
+		this.name = name;
+		this.index = index;
+		this.price = price;
+		this.description = description || '';
+	}
+	
+	buy() {
+		if (!game.state.upgrades[this.index] && game.state.flower >= this.price) {
+			game.state.upgrades[this.index] = true;
+			game.state.flower -= this.price;
+		}
+	}
+	
+	createButton() {
+		let d = document.createElement('div');
+		d.id = 'upg' + this.index + 'd';
+		d.className = 'upgDiv';
+		let b = document.createElement('button');
+		b.id = 'upg' + this.index + 'b';
+		b.className = 'red';
+		b.innerHTML = this.name;
+		b.setAttribute('onclick', 'upgList[' + this.index + '].buy()');
+		let p = document.createElement('p');
+		p.id = 'upg' + this.index + 'p';
+		p.innerHTML = this.description + '&nbsp;Cost: ' + this.price;;
+		d.appendChild(b);
+		d.appendChild(p);
+		document.getElementById('upgradesDiv').appendChild(d);
+	}
+	
+	updateButton() {
+		let str = '';
+		if (game.state.upgrades[this.index]) {
+			str = 'blue';
+		} else {
+			if (game.state.flower >= this.price) {
+				str = 'green';
+			} else {
+				str = 'red';
+			}
+		}
+		document.getElementById('upg' + this.index + 'b').className = document.getElementById('upg' + this.index + 'b').className.replace(/(green|red|blue)/, str);
+	}
 }
+
+let upgList = [
+	new Upgrade('Bigger Leaves 1', 0, 500, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Bigger Leaves 2', 1, 5e5, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Bigger Leaves 3', 2, 5e6, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Bigger Leaves 4', 3, 2.5e7, 'Double the flower production of 1-leaf clovers'),
+	new Upgrade('Triplet Leaves', 4, 3e6, 'Triple the flower production of 3-leaf clovers'),
+	new Upgrade('Make more flowers out of thin air', 5, 1000, 'Adds 9 to flowers per click'),
+	new Upgrade('Make even more flowers out of thin air', 6, 10000, 'Flowers per click is multiplied by 4'),
+	new Upgrade('Make yet more flowers out of thin air', 7, 2e5, 'Flowers per click is multiplied by 5'),
+	new Upgrade('Make flowers out of trash', 8, 8e6, 'Flowers per click is multiplied by 10'),
+	new Upgrade('The Millionaire Upgrade', 9, 1e6, 'You get 2.5x as many flowers from all sources'),
+	new Upgrade('Multimillionaire Upgrade', 10, 1e7, 'You get 2x as many flowers from all sources'),
+	new Upgrade('Polymillionaire Upgrade', 11, 1e8, 'You get 2x as many flowers from all sources'),
+	new Upgrade('Billionaire Upgrade', 12, 1e9, 'You get 3x as many flowers from all sources'),
+]
+
+var game = {
+	state: {
+		flower: 0,
+		Clover1: 0,
+		Clover1Cost: 40,
+		Clover1Mult: 1,
+		Clover3: 0,
+		Clover3Cost: 2000,
+		Clover3Mult: 1,
+		Clover4: 0,
+		Clover4Cost: 2e7,
+		Clover4Mult: 1,
+		tap: 1
+	}
 };
+
+
+
+
+function format(amount) {
+  let power = Math.floor(Math.log10(amount))
+  let mantissa = amount / Math.pow(10, power)
+  if (power < 6) return amount;
+	else {
+  return mantissa.toFixed(3) + "e" + power; }
+}
+
+
 var AverageFlowerPerSecond;
-setInterval(function() {
-AverageFlowerPerSecond = Math.round(game.state.Clover1 + (16.6666667 * game.state.Clover3))
-}, 20
-	      );
-function UpdateAverageFlowerPerSecond(){
-	document.getElementById('AverageFlowerPerSecond').innerHTML = AverageFlowerPerSecond
-};
+var FlowerPerClick;
 
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower += C0;
-    document.getElementById("flower").innerHTML = game.state.flower;
+    document.getElementById("flower").innerHTML = format(game.state.flower);
 };
 
 function buyC1(){
@@ -27,59 +102,152 @@ function buyC1(){
     if(game.state.flower >= C1C){                                   //checks that the player can afford the One Leaf Clover
         game.state.Clover1 = game.state.Clover1 + 1;                                   //increases number of One Leaf Clovers
     	game.state.flower = game.state.flower - C1C;                          //removes the flowers spent
-        document.getElementById('Clover1').innerHTML = game.state.Clover1;  //updates the number of One Leaf Clovers for the user
-        document.getElementById('flower').innerHTML = game.state.flower;  //updates the number of flowers for the user
+        document.getElementById('Clover1').innerHTML = format(game.state.Clover1);  //updates the number of One Leaf Clovers for the user
+        document.getElementById('flower').innerHTML = format(game.state.flower);  //updates the number of flowers for the user
     };
     var nextC1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));       //works out the cost of the next One Leaf Clover
-    document.getElementById('Clover1Cost').innerHTML = nextC1C;  //updates the One Leaf Clover cost for the user
+    document.getElementById('Clover1Cost').innerHTML = format(nextC1C);  //updates the One Leaf Clover cost for the user
 };
 
 setInterval(function() {
-	MakeFlowersOutOfThinAir(game.state.Clover1);}, 1000);
+	MakeFlowersOutOfThinAir(game.state.Clover1 * game.state.Clover1Mult);}, 1000);
 
 function buyC3(){
-    var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));     //works out the cost of this Three Leaf Clover
-    if(game.state.flower >= C3C){                                   //checks that the player can afford the Three Leaf Clover
-        game.state.Clover3 = game.state.Clover3 + 1;                                   //increases number of Three Leaf Clovers
-    	game.state.flower = game.state.flower - C3C;                          //removes the flowers spent
-        document.getElementById('Clover3').innerHTML = game.state.Clover3;  //updates the number of Three Leaf Clovers for the user
-        document.getElementById('flower').innerHTML = game.state.flower;  //updates the number of flowers for the user
+    var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
+    if(game.state.flower >= C3C){
+        game.state.Clover3 = game.state.Clover3 + 1;
+    	game.state.flower = game.state.flower - C3C;
+        document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
+        document.getElementById('flower').innerHTML = format(game.state.flower);
     };
-    var nextC3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));       //works out the cost of the next Three Leaf Clover
-    document.getElementById('Clover3Cost').innerHTML = nextC3C;  //updates the Three Leaf Clover cost for the user
+    var nextC3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
+    document.getElementById('Clover3Cost').innerHTML = format(nextC3C);
 };
 
 setInterval(function(){
-MakeFlowersOutOfThinAir(50 * game.state.Clover3)
-
+	MakeFlowersOutOfThinAir(game.state.Clover3 * game.state.Clover3Mult * 50)
 }, 3000);
-
-setInterval(function(){
-	UpdateAverageFlowerPerSecond()
-}, 40);
-
-
-
-
 	
+function buyC4(){
+    var C4C = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
+    if(game.state.flower >= C4C){
+        game.state.Clover4 = game.state.Clover4 + 1;
+    	game.state.flower = game.state.flower - C4C;
+        document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
+        document.getElementById('flower').innerHTML = format(game.state.flower);
+    };
+    var nextC4C = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
+    document.getElementById('Clover4Cost').innerHTML = format(nextC4C);
+};
+	
+setInterval(function(){
+	MakeFlowersOutOfThinAir(game.state.Clover4 * game.state.Clover4Mult * 6000)
+}, 4000);
+
+
+function UpdateAverageFlowerPerSecond(){
+	document.getElementById('AverageFlowerPerSecond').innerHTML = format(AverageFlowerPerSecond);
+};
+
+function UpdateFlowerPerClick(){
+	document.getElementById('FlowerPerClick').innerHTML = format(FlowerPerClick);
+};
+
+setInterval(function() {
+    AverageFlowerPerSecond = Math.round(game.state.Clover1 * game.state.Clover1Mult + (16.6666667 * game.state.Clover3 * game.state.Clover3Mult) + 1500 * game.state.Clover4 * game.state.Clover4Mult);
+    FlowerPerClick = game.state.tap;
+    UpdateAverageFlowerPerSecond();
+    UpdateFlowerPerClick();
+    for (let i of upgList) i.updateButton();
+    game.state.Clover1Mult = 1;
+    game.state.Clover3Mult = 1;
+    game.state.Clover4Mult = 1;
+    game.state.tap = 1;
+    
+    for( k = 0; k < 4; k++) {
+		if (game.state.upgrades[k]) game.state.Clover1Mult *= 2;
+    }
+	if (game.state.upgrades[4]) game.state.Clover3Mult *= 3;
+	if (game.state.upgrades[5]) game.state.tap += 9;
+	if (game.state.upgrades[6]) game.state.tap *= 4;
+	if (game.state.upgrades[7]) game.state.tap *= 5;
+	if (game.state.upgrades[8]) game.state.tap *= 10;
+	if (game.state.upgrades[9]) multiplyEverything(2.5);
+	if (game.state.upgrades[10]) multiplyEverything(2);
+	if (game.state.upgrades[11]) multiplyEverything(2);
+	if (game.state.upgrades[12]) multiplyEverything(3);
+}, 33);
+
+function multiplyEverything(a) {
+	game.state.tap *= a;
+	game.state.Clover1Mult *= a;
+	game.state.Clover3Mult *= a;
+	game.state.Clover4Mult *= a;
+}
+	
+function tab(tab) {
+	// hide all your tabs, then show the one the user selected.
+	document.getElementById("cloverTab").style.display = "none"
+	document.getElementById("upgradeTab1").style.display = "none"
+	document.getElementById("optionsTab").style.display = "none"
+	document.getElementById("changelogTab").style.display = "none"
+	document.getElementById(tab).style.display = "inline-block"
+}
+// go to a tab for the first time, so not all show
+tab("cloverTab")
+
 function save() {
     localStorage.cc = btoa(JSON.stringify(game));
-};
+}
+
 function load() {
     if(!localStorage.cc) return;
     game = JSON.parse(atob(localStorage.cc));
 
-    transformToDecimal(game)
-};
+    transformToDecimal(game);
+    document.getElementById('flower').innerHTML = format(game.state.flower);
+    document.getElementById('Clover1').innerHTML = format(game.state.Clover1);
+    document.getElementById('Clover1Cost').innerHTML = format(Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1)));
+    document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
+    document.getElementById('Clover3Cost').innerHTML = format(Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3)));
+    document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
+    document.getElementById('Clover4Cost').innerHTML = format(Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4)));
+}
+
 function transformToDecimal(object) { 
     for(i in object) {
         if(typeof(object[i]) == "string" && !isNaN(new Decimal(object[i]).mag)) object[i] = new Decimal(object[i]); 
         if(typeof(object[i]) == "object") transformToDecimal(object[i]) 
     }
 }
+
 load();
+for (let i of upgList) i.createButton();
 
 setInterval(function(){
 	save();
 }, 15000);
-    
+
+function hardReset() {
+	game.state.flower = 0;
+	game.state.Clover1 = 0;
+	game.state.Clover1Cost = 40;
+	game.state.Clover1Mult = 1;
+	game.state.Clover3 = 0;
+	game.state.Clover3Cost = 2000;
+	game.state.Clover3Mult = 1;
+	game.state.Clover4 = 0;
+	game.state.Clover4Cost = 2e7;
+	game.state.Clover4Mult = 1;
+	game.state.tap = 1;
+	game.state.upgrades = new Array(upgList.length);
+	game.state.upgrades.fill(false);
+	
+	document.getElementById('flower').innerHTML = game.state.flower;
+        document.getElementById('Clover1').innerHTML = game.state.Clover1;
+        document.getElementById('Clover1Cost').innerHTML = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));
+        document.getElementById('Clover3').innerHTML = game.state.Clover3;
+        document.getElementById('Clover3Cost').innerHTML = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
+        document.getElementById('Clover4').innerHTML = game.state.Clover4;
+        document.getElementById('Clover4Cost').innerHTML = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
+}

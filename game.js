@@ -77,6 +77,18 @@ var game = {
 	}
 };
 
+
+
+
+function format(amount) {
+  let power = Math.floor(Math.log10(amount))
+  let mantissa = amount / Math.pow(10, power)
+  if (power < 6) return amount;
+	else {
+  return mantissa.toFixed(3) + "e" + power; }
+}
+
+
 var AverageFlowerPerSecond;
 var FlowerPerClick;
 

@@ -158,6 +158,16 @@ setInterval(function() {
     FlowerPerClick = game.state.tap;
     UpdateAverageFlowerPerSecond();
     UpdateFlowerPerClick();
+	//A little thing I tried
+	if (Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1)) <= game.state.flower) {
+		document.getElementById("C1B").className = "green"
+	} else document.getElementById("C1B").className = "red"
+	if (Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3)) <= game.state.flower) {
+		document.getElementById("C3B").className = "green"
+	} else document.getElementById("C3B").className = "red"
+	if (Math.floor(game.state.Clover4Cost * Math.pow(1.2,game.state.Clover4)) <= game.state.flower) {
+		document.getElementById("C4B").className = "green"
+	} else document.getElementById("C4B").className = "red"
     for (let i of upgList) i.updateButton();
     game.state.Clover1Mult = 1;
     game.state.Clover3Mult = 1;

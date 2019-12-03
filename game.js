@@ -24,7 +24,7 @@ class Upgrade {
 		b.setAttribute('onclick', 'upgList[' + this.index + '].buy()');
 		let p = document.createElement('p');
 		p.id = 'upg' + this.index + 'p';
-		p.innerHTML = this.description + '&nbsp;Cost: ' + this.price;;
+		p.innerHTML = this.description + '&nbsp;Cost: ' + format(this.price);;
 		d.appendChild(b);
 		d.appendChild(p);
 		document.getElementById('upgradesDiv').appendChild(d);

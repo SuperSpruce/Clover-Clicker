@@ -154,13 +154,13 @@ function UpdateFlowerPerClick(){
 };
 
 function UpdateClover1Mult(){
-	document.getElementById('Clover1Mult').innerHTML = format(Clover1Mult);
+	document.getElementById('Clover1Mult').innerHTML = format(game.state.Clover1Mult);
 };
 function UpdateClover3Mult(){
-	document.getElementById('Clover3Mult').innerHTML = format(50 * Clover3Mult);
+	document.getElementById('Clover3Mult').innerHTML = format(50 * game.state.Clover3Mult);
 };
 function UpdateClover4Mult(){
-	document.getElementById('Clover4Mult').innerHTML = format(6000 * Clover4Mult);
+	document.getElementById('Clover4Mult').innerHTML = format(6000 * game.state.Clover4Mult);
 };
 
 setInterval(function() {

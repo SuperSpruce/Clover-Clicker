@@ -24,7 +24,7 @@ class Upgrade {
 		b.setAttribute('onclick', 'upgList[' + this.index + '].buy()');
 		let p = document.createElement('p');
 		p.id = 'upg' + this.index + 'p';
-		p.innerHTML = this.description + '&nbsp;Cost: ' + this.price;;
+		p.innerHTML = this.description + '&nbsp;Cost: ' + this.price;
 		d.appendChild(b);
 		d.appendChild(p);
 		document.getElementById('upgradesDiv').appendChild(d);
@@ -158,6 +158,16 @@ setInterval(function() {
     FlowerPerClick = game.state.tap;
     UpdateAverageFlowerPerSecond();
     UpdateFlowerPerClick();
+	//A little thing I tried
+	if (Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1)) <= game.state.flower) {
+		document.getElementById("C1B").className = "green"
+	} else document.getElementById("C1B").className = "red"
+	if (Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3)) <= game.state.flower) {
+		document.getElementById("C3B").className = "green"
+	} else document.getElementById("C3B").className = "red"
+	if (Math.floor(game.state.Clover4Cost * Math.pow(1.2,game.state.Clover4)) <= game.state.flower) {
+		document.getElementById("C4B").className = "green"
+	} else document.getElementById("C4B").className = "red"
     for (let i of upgList) i.updateButton();
     game.state.Clover1Mult = 1;
     game.state.Clover3Mult = 1;
@@ -242,4 +252,12 @@ function hardReset() {
 	game.state.tap = 1;
 	game.state.upgrades = new Array(upgList.length);
 	game.state.upgrades.fill(false);
+	
+	document.getElementById('flower').innerHTML = game.state.flower;
+        document.getElementById('Clover1').innerHTML = game.state.Clover1;
+        document.getElementById('Clover1Cost').innerHTML = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));
+        document.getElementById('Clover3').innerHTML = game.state.Clover3;
+        document.getElementById('Clover3Cost').innerHTML = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
+        document.getElementById('Clover4').innerHTML = game.state.Clover4;
+        document.getElementById('Clover4Cost').innerHTML = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
 }

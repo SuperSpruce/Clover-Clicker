@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<title>Clover Clicker</title>
 	</head>
-	
+
 	<body>
 		<div id="navigateButtons">
 			<button onclick="tab('cloverTab')">Clovers</button>
@@ -13,54 +13,54 @@
 			<button onclick="tab('optionsTab')">Options</button>
 			<button onclick="tab('changelogTab')">Changelog</button>
 		</div>
-		
-		
+
+
 		<br> Flowers: <span id="flower">0</span>
 			<br>
 				<button onclick="MakeFlowersOutOfThinAir(game.state.tap)">Click for a Flower!</button>
 			<br>
-				
+
 			Flowers per click: <span id="FlowerPerClick">1</span><br>
 			Flowers per second: <span id="AverageFlowerPerSecond">0</span>
 			<br><br><br>
-		
-		
+
+
 		<div id = "cloverTab">
-			<button onclick="buyC1()">Buy a 1 Leaf Clover</button> <span id="Clover1Mult">1</span> flowers per One Leaf Clover every second
+			<button id="C1B" onclick="buyC1()">Buy a 1 Leaf Clover</button> <span id="Clover1Mult">1</span> flowers per One Leaf Clover every second
 			<br>
 			One Leaf Clovers: <span id="Clover1">0</span>
 			<br>
 			Cost: <span id="Clover1Cost">40</span> flowers<br><br>
-				
-			<button onclick="buyC3()">Buy a 3 Leaf Clover</button> <span id="Clover3Mult">50</span> flowers per Three Leaf Clover every three seconds
+
+			<button id="C3B" onclick="buyC3()">Buy a 3 Leaf Clover</button> <span id="Clover3Mult">50</span> flowers per Three Leaf Clover every three seconds
 			<br>
 			Three Leaf Clovers: <span id="Clover3">0</span>
 			<br>
 			Cost: <span id="Clover3Cost">2000</span> flowers
 			<br><br>
-			
-			<button onclick="buyC4()">Buy a 4 Leaf Clover</button> <span id="Clover4Mult">6000</span> flowers per Four Leaf Clover every four seconds
+
+			<button id="C4B" onclick="buyC4()">Buy a 4 Leaf Clover</button> <span id="Clover4Mult">6000</span> flowers per Four Leaf Clover every four seconds
 			<br>
 			Three Leaf Clovers: <span id="Clover4">0</span>
 			<br>
 			Cost: <span id="Clover4Cost">2e7</span> flowers
 			<br><br>
 		</div>
-		
-		
+
+
 		<div id = "upgradeTab1">
 			<div id='upgradesDiv'></div>
 		</div>
-			
-			
+
+
 		<div id = "optionsTab">
 			Manual Save:  <button type='button' id='input_save' onclick = "save()">save</button></br>
 			Manual Load:  <button type='button' id='input_load' onclick = "load()">load</button>
 		<br><br>
 		        Hard Reset (WARNING: WHEN CLICKING THIS BUTTON, YOU HARD RESET YOUR SAVE. YOUR PREVIOUS SAVE'S DATA WILL NOT BE RECOVERED.) : <button type='button' id='input_load' onclick = "hardReset()">HARD RESET</button>
 		</div>
-	
-	
+
+
 	<div id = "changelogTab">
 		11-10-2019, v0.4.0 beta: Added the 4-leaf Clover, and the first upgrade (Bigger Leaves 1) <br>
 		11-11-2019, v0.4.1 beta: Now you can see your flowers, the "Click for a flower!" button, your flowers per second, and your flowers per click in every tab. <br>
@@ -71,7 +71,7 @@
 		11-23-2019, v0.4.6 beta: Fixed a bug where "Triplet Leaves" only multiplied 3-leaf clover production by 2 instead of 3. <br>
 		11-24-2019, v0.4.7 beta: Added this changelog. <br>
 		11-25-2019, v0.4.8 beta: Numbers over 1 million are now formatted in scientific notation. <br>
-		
+		12-2-2019,  v0.4.9 beta: Buttons for clovers are now colored to show if they are buyable of not.<br>
 		<script type="text/javascript" src="game.js"></script>
 	</body>
 </html>

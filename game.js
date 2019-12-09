@@ -196,6 +196,10 @@ setInterval(function() {
 	if (game.state.upgrades[10]) multiplyEverything(2);
 	if (game.state.upgrades[11]) multiplyEverything(2);
 	if (game.state.upgrades[12]) multiplyEverything(3);
+	
+	UpdateClover1Mult();
+	UpdateClover3Mult();
+	UpdateClover4Mult();
 }, 33);
 
 function multiplyEverything(a) {

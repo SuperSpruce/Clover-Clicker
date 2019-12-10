@@ -24,7 +24,7 @@ class Upgrade {
 		b.setAttribute('onclick', 'upgList[' + this.index + '].buy()');
 		let p = document.createElement('p');
 		p.id = 'upg' + this.index + 'p';
-		p.innerHTML = this.description + '&nbsp;Cost: ' + this.price;
+		p.innerHTML = this.description + '&nbsp;Cost: ' + format(this.price);
 		d.appendChild(b);
 		d.appendChild(p);
 		document.getElementById('upgradesDiv').appendChild(d);
@@ -153,6 +153,19 @@ function UpdateFlowerPerClick(){
 	document.getElementById('FlowerPerClick').innerHTML = format(FlowerPerClick);
 };
 
+function UpdateClover1Mult(){
+	document.getElementById('Clover1Mult').innerHTML = format(game.state.Clover1Mult);
+};
+function UpdateClover3Mult(){
+	document.getElementById('Clover3Mult').innerHTML = format(50 * game.state.Clover3Mult);
+};
+function UpdateClover4Mult(){
+	document.getElementById('Clover4Mult').innerHTML = format(6000 * game.state.Clover4Mult);
+};
+
+
+
+
 setInterval(function() {
     AverageFlowerPerSecond = Math.round(game.state.Clover1 * game.state.Clover1Mult + (16.6666667 * game.state.Clover3 * game.state.Clover3Mult) + 1500 * game.state.Clover4 * game.state.Clover4Mult);
     FlowerPerClick = game.state.tap;
@@ -186,7 +199,16 @@ setInterval(function() {
 	if (game.state.upgrades[10]) multiplyEverything(2);
 	if (game.state.upgrades[11]) multiplyEverything(2);
 	if (game.state.upgrades[12]) multiplyEverything(3);
+	
+	UpdateClover1Mult();
+	UpdateClover3Mult();
+	UpdateClover4Mult();
+	document.getElementById('Clover1P').innerHTML = format(game.state.Clover1Mult * game.state.Clover1);
+	document.getElementById('Clover3P').innerHTML = format(Math.round(game.state.Clover3Mult * game.state.Clover3 * 16.6666666666667));
+	document.getElementById('Clover4P').innerHTML = format(game.state.Clover4Mult * game.state.Clover4 * 1500);
 }, 33);
+
+
 
 function multiplyEverything(a) {
 	game.state.tap *= a;

@@ -244,6 +244,11 @@ function load() {
     document.getElementById('Clover3Cost').innerHTML = format(Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3)));
     document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
     document.getElementById('Clover4Cost').innerHTML = format(Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4)));
+	
+	if(game.state.flower == 0 && game.state.Clover1 == 0 && game.state.Clover3 == 0 && game.state.Clover4 == 0)
+	{
+		hardReset();
+	}
 }
 
 function transformToDecimal(object) { 

@@ -98,30 +98,29 @@ function MakeFlowersOutOfThinAir(C0){
 };
 
 function buyC1(){
-    var C1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));     //works out the cost of this One Leaf Clover
-    if(game.state.flower >= C1C){                                   //checks that the player can afford the One Leaf Clover
+    //var C1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));     //works out the cost of this One Leaf Clover
+    if(game.state.flower >= game.state.Clover1Cost){                                   //checks that the player can afford the One Leaf Clover
         game.state.Clover1 = game.state.Clover1 + 1;                                   //increases number of One Leaf Clovers
-    	game.state.flower = game.state.flower - C1C;                          //removes the flowers spent
+    	game.state.flower = game.state.flower - game.state.Clover1Cost;                          //removes the flowers spent
         document.getElementById('Clover1').innerHTML = format(game.state.Clover1);  //updates the number of One Leaf Clovers for the user
         document.getElementById('flower').innerHTML = format(game.state.flower);  //updates the number of flowers for the user
     };
-    var nextC1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));       //works out the cost of the next One Leaf Clover
-    document.getElementById('Clover1Cost').innerHTML = format(nextC1C);  //updates the One Leaf Clover cost for the user
+    game.state.Clover1Cost = Math.round(game.state.Clover1Cost * 1.03);       //works out the cost of the next One Leaf Clover
+    document.getElementById('Clover1Cost').innerHTML = format(game.state.Clover1Cost);  //updates the One Leaf Clover cost for the user
 };
 
 setInterval(function() {
 	MakeFlowersOutOfThinAir(game.state.Clover1 * game.state.Clover1Mult);}, 1000);
 
 function buyC3(){
-    var C3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
-    if(game.state.flower >= C3C){
+    if(game.state.flower >= game.state.Clover3Cost){
         game.state.Clover3 = game.state.Clover3 + 1;
-    	game.state.flower = game.state.flower - C3C;
+    	game.state.flower = game.state.flower - game.state.Clover3Cost;
         document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
         document.getElementById('flower').innerHTML = format(game.state.flower);
     };
-    var nextC3C = Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3));
-    document.getElementById('Clover3Cost').innerHTML = format(nextC3C);
+    game.state.Clover3Cost = Math.round(game.state.Clover3Cost * 1.05);
+    document.getElementById('Clover3Cost').innerHTML = format(game.state.Clover3Cost);
 };
 
 setInterval(function(){
@@ -129,15 +128,14 @@ setInterval(function(){
 }, 3000);
 	
 function buyC4(){
-    var C4C = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
-    if(game.state.flower >= C4C){
+    if(game.state.flower >= game.state.Clover4Cost){
         game.state.Clover4 = game.state.Clover4 + 1;
-    	game.state.flower = game.state.flower - C4C;
+    	game.state.flower = game.state.flower - game.state.Clover4Cost;
         document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
         document.getElementById('flower').innerHTML = format(game.state.flower);
     };
-    var nextC4C = Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4));
-    document.getElementById('Clover4Cost').innerHTML = format(nextC4C);
+    game.state.Clover4Cost = Math.round(game.state.Clover4Cost * 1.2);
+    document.getElementById('Clover4Cost').innerHTML = format(game.state.Clover4Cost);
 };
 	
 setInterval(function(){
@@ -162,6 +160,44 @@ function UpdateClover3Mult(){
 function UpdateClover4Mult(){
 	document.getElementById('Clover4Mult').innerHTML = format(6000 * game.state.Clover4Mult);
 };
+
+
+function maxC1() {
+	if(game.state.flower > game.state.Clover1Cost * 1e10) {
+		//to be filled in when we have more flowers to burn
+	}
+	else {
+		while(game.state.flower >= game.state.Clover1Cost) {
+			buyC1();
+		}
+	}
+}
+function maxC3() {
+	if(game.state.flower > game.state.Clover3Cost * 1e10) {
+		//to be filled in when we have more flowers to burn
+	}
+	else {
+		while(game.state.flower >= game.state.Clover3Cost) {
+			buyC3();
+		}
+	}
+}
+function maxC4() {
+	if(game.state.flower > game.state.Clover4Cost * 1e10) {
+		//to be filled in when we have more flowers to burn
+	}
+	else {
+		while(game.state.flower >= game.state.Clover4Cost) {
+			buyC4();
+		}
+	}
+}
+
+function maxAllClovers() {
+	maxC1();
+	maxC3();
+	maxC4();
+}
 
 
 

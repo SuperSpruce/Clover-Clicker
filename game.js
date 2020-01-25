@@ -194,9 +194,9 @@ function maxC4() {
 }
 
 function maxAllClovers() {
-	maxC1();
-	maxC3();
 	maxC4();
+	maxC3();
+	maxC1();
 }
 
 

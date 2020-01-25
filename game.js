@@ -104,9 +104,9 @@ function buyC1(){
     	game.state.flower = game.state.flower - game.state.Clover1Cost;                          //removes the flowers spent
         document.getElementById('Clover1').innerHTML = format(game.state.Clover1);  //updates the number of One Leaf Clovers for the user
         document.getElementById('flower').innerHTML = format(game.state.flower);  //updates the number of flowers for the user
-    };
     game.state.Clover1Cost = Math.round(game.state.Clover1Cost * 1.03);       //works out the cost of the next One Leaf Clover
     document.getElementById('Clover1Cost').innerHTML = format(game.state.Clover1Cost);  //updates the One Leaf Clover cost for the user
+    }
 };
 
 setInterval(function() {
@@ -118,9 +118,9 @@ function buyC3(){
     	game.state.flower = game.state.flower - game.state.Clover3Cost;
         document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
         document.getElementById('flower').innerHTML = format(game.state.flower);
-    };
     game.state.Clover3Cost = Math.round(game.state.Clover3Cost * 1.05);
     document.getElementById('Clover3Cost').innerHTML = format(game.state.Clover3Cost);
+    }
 };
 
 setInterval(function(){
@@ -133,9 +133,9 @@ function buyC4(){
     	game.state.flower = game.state.flower - game.state.Clover4Cost;
         document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
         document.getElementById('flower').innerHTML = format(game.state.flower);
-    };
     game.state.Clover4Cost = Math.round(game.state.Clover4Cost * 1.2);
     document.getElementById('Clover4Cost').innerHTML = format(game.state.Clover4Cost);
+    }
 };
 	
 setInterval(function(){

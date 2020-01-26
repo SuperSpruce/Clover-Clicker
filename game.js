@@ -200,7 +200,7 @@ function logCloverBuy(cloverType, initalCost, costMult) {
 			    document.getElementById('Clover4Cost').innerHTML = format(Math.round(newCost));
 			    break;
 	    }
-	    game.state.flower -= newCost / (geoConst * costMult);
+	    game.state.flower -= newCost / (geoConst);
 	    document.getElementById('flower').innerHTML = format(game.state.flower);
 	}
 }
@@ -251,17 +251,26 @@ setInterval(function() {
     FlowerPerClick = game.state.tap;
     UpdateAverageFlowerPerSecond();
     UpdateFlowerPerClick();
-	//A little thing I tried
+
 	if (Math.floor(game.state.Clover1Cost) <= game.state.flower) {
 		document.getElementById("C1B").className = "green";
-	} else document.getElementById("C1B").className = "red";
+		document.getElementById("M1").className = "green";
+	} else {
+		document.getElementById("C1B").className = "red";
+		document.getElementById("M1").className = "red";
+	}
 	if (Math.floor(game.state.Clover3Cost <= game.state.flower) {
 		document.getElementById("C3B").className = "green";
-	} else document.getElementById("C3B").className = "red";
+	} else {
+	        document.getElementById("C3B").className = "red";
+        }
 	if (Math.floor(game.state.Clover4Cost <= game.state.flower) {
 		document.getElementById("C4B").className = "green";
-	} else document.getElementById("C4B").className = "red";
+	} else {
+		document.getElementById("C4B").className = "red";
+	}
     for (let i of upgList) i.updateButton();
+
     game.state.Clover1Mult = 1;
     game.state.Clover3Mult = 1;
     game.state.Clover4Mult = 1;

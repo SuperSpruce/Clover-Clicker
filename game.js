@@ -99,13 +99,13 @@ function MakeFlowersOutOfThinAir(C0){
 
 function buyC1(){
     //var C1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));     //works out the cost of this One Leaf Clover
-    if(game.state.flower >= game.state.Clover1Cost){                                   //checks that the player can afford the One Leaf Clover
+    if(game.state.flower >= Math.round(game.state.Clover1Cost)){                                   //checks that the player can afford the One Leaf Clover
         game.state.Clover1 = game.state.Clover1 + 1;                                   //increases number of One Leaf Clovers
     	game.state.flower = game.state.flower - game.state.Clover1Cost;                          //removes the flowers spent
         document.getElementById('Clover1').innerHTML = format(game.state.Clover1);  //updates the number of One Leaf Clovers for the user
         document.getElementById('flower').innerHTML = format(game.state.flower);  //updates the number of flowers for the user
-    game.state.Clover1Cost = Math.round(game.state.Clover1Cost * 1.03);       //works out the cost of the next One Leaf Clover
-    document.getElementById('Clover1Cost').innerHTML = format(game.state.Clover1Cost);  //updates the One Leaf Clover cost for the user
+    game.state.Clover1Cost = game.state.Clover1Cost * 1.03;       //works out the cost of the next One Leaf Clover
+    document.getElementById('Clover1Cost').innerHTML = format(Math.round(game.state.Clover1Cost));  //updates the One Leaf Clover cost for the user
     }
 };
 
@@ -113,13 +113,13 @@ setInterval(function() {
 	MakeFlowersOutOfThinAir(game.state.Clover1 * game.state.Clover1Mult);}, 1000);
 
 function buyC3(){
-    if(game.state.flower >= game.state.Clover3Cost){
+    if(game.state.flower >= Math.round(game.state.Clover3Cost)){
         game.state.Clover3 = game.state.Clover3 + 1;
     	game.state.flower = game.state.flower - game.state.Clover3Cost;
         document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
         document.getElementById('flower').innerHTML = format(game.state.flower);
-    game.state.Clover3Cost = Math.round(game.state.Clover3Cost * 1.05);
-    document.getElementById('Clover3Cost').innerHTML = format(game.state.Clover3Cost);
+    game.state.Clover3Cost = game.state.Clover3Cost * 1.05;
+    document.getElementById('Clover3Cost').innerHTML = format(Math.round(game.state.Clover3Cost));
     }
 };
 
@@ -128,13 +128,13 @@ setInterval(function(){
 }, 3000);
 	
 function buyC4(){
-    if(game.state.flower >= game.state.Clover4Cost){
+    if(game.state.flower >= Math.round(game.state.Clover4Cost)){
         game.state.Clover4 = game.state.Clover4 + 1;
     	game.state.flower = game.state.flower - game.state.Clover4Cost;
         document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
         document.getElementById('flower').innerHTML = format(game.state.flower);
-    game.state.Clover4Cost = Math.round(game.state.Clover4Cost * 1.2);
-    document.getElementById('Clover4Cost').innerHTML = format(game.state.Clover4Cost);
+    game.state.Clover4Cost = game.state.Clover4Cost * 1.2;
+    document.getElementById('Clover4Cost').innerHTML = format(Math.round(game.state.Clover4Cost));
     }
 };
 	
@@ -160,6 +160,17 @@ function UpdateClover3Mult(){
 function UpdateClover4Mult(){
 	document.getElementById('Clover4Mult').innerHTML = format(6000 * game.state.Clover4Mult);
 };
+
+
+
+function logBase(base, input) {
+	return Math.log(input) / Math.log(base)
+}
+
+function logCloverBuy(initalCost, costMult) {
+	var quo = game.state.flower / initalCost;
+	quo /= 
+}
 
 
 function maxC1() {
@@ -275,11 +286,11 @@ function load() {
     transformToDecimal(game);
     document.getElementById('flower').innerHTML = format(game.state.flower);
     document.getElementById('Clover1').innerHTML = format(game.state.Clover1);
-    document.getElementById('Clover1Cost').innerHTML = format(Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1)));
+    document.getElementById('Clover1Cost').innerHTML = format(Math.floor(game.state.Clover1Cost));
     document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
-    document.getElementById('Clover3Cost').innerHTML = format(Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3)));
+    document.getElementById('Clover3Cost').innerHTML = format(Math.floor(game.state.Clover3Cost));
     document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
-    document.getElementById('Clover4Cost').innerHTML = format(Math.floor(game.state.Clover4Cost * Math.pow(1.20,game.state.Clover4)));
+    document.getElementById('Clover4Cost').innerHTML = format(Math.floor(game.state.Clover4Cost));
 	
 	if(game.state.flower == 0 && game.state.Clover1 == 0 && game.state.Clover3 == 0 && game.state.Clover4 == 0)
 	{

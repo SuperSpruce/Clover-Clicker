@@ -208,7 +208,7 @@ function logCloverBuy(cloverType, initalCost, costMult) {
 
 function maxC1() {
 	if(game.state.flower > game.state.Clover1Cost * 1e10) {
-		logCloverBuy(1, Clover1Cost, 1.03);
+		logCloverBuy(1, game.state.Clover1Cost, 1.03);
 	}
 	else {
 		while(game.state.flower >= game.state.Clover1Cost) {
@@ -218,7 +218,7 @@ function maxC1() {
 }
 function maxC3() {
 	if(game.state.flower > game.state.Clover3Cost * 1e10) {
-		logCloverBuy(3, Clover3Cost, 1.05);
+		logCloverBuy(3, game.state.Clover3Cost, 1.05);
 	}
 	else {
 		while(game.state.flower >= game.state.Clover3Cost) {
@@ -228,7 +228,7 @@ function maxC3() {
 }
 function maxC4() {
 	if(game.state.flower > game.state.Clover4Cost * 1e10) {
-		logCloverBuy(4, Clover4Cost, 1.2);
+		logCloverBuy(4, game.state.Clover4Cost, 1.2);
 	}
 	else {
 		while(game.state.flower >= game.state.Clover4Cost) {

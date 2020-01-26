@@ -72,12 +72,18 @@ var game = {
 		flower: 0,
 		Clover1: 0,
 		Clover1Cost: 40,
+		Clover1Cost10: 40 * (1 - Math.pow(1.03, 10)) / (1 - 1.03),
+		Clover1Cost100: 40 * (1 - Math.pow(1.03, 100)) / (1 - 1.03),
 		Clover1Mult: 1,
 		Clover3: 0,
 		Clover3Cost: 2000,
+		Clover3Cost10: 2000 * (1 - Math.pow(1.05, 10)) / (1 - 1.05),
+		Clover3Cost100: 2000 * (1 - Math.pow(1.05, 100)) / (1 - 1.05),
 		Clover3Mult: 1,
 		Clover4: 0,
 		Clover4Cost: 2e7,
+		Clover4Cost10: 2e7 * (1 - Math.pow(1.2, 10)) / (1 - 1.2),
+		Clover4Cost100: 2e7 * (1 - Math.pow(1.2, 100)) / (1 - 1.2),
 		Clover4Mult: 1,
 		tap: 1
 	}
@@ -110,8 +116,10 @@ function buyC1(){
     	game.state.flower = game.state.flower - Math.round(game.state.Clover1Cost);                          //removes the flowers spent
         document.getElementById('Clover1').innerHTML = format(game.state.Clover1);  //updates the number of One Leaf Clovers for the user
         document.getElementById('flower').innerHTML = format(game.state.flower);  //updates the number of flowers for the user
-    game.state.Clover1Cost = game.state.Clover1Cost * 1.03;       //works out the cost of the next One Leaf Clover
-    document.getElementById('Clover1Cost').innerHTML = format(Math.round(game.state.Clover1Cost));  //updates the One Leaf Clover cost for the user
+        game.state.Clover1Cost = game.state.Clover1Cost * 1.03;       //works out the cost of the next One Leaf Clover
+	game.state.Clover1Cost10 = game.state.Clover1Cost * (1 - Math.pow(1.03, 10)) / (1 - 1.03);
+	game.state.Clover1Cost100 = game.state.Clover1Cost * (1 - Math.pow(1.03, 100)) / (1 - 1.03);
+        document.getElementById('Clover1Cost').innerHTML = format(Math.round(game.state.Clover1Cost));  //updates the One Leaf Clover cost for the user
     }
 };
 
@@ -125,6 +133,8 @@ function buyC3(){
         document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
         document.getElementById('flower').innerHTML = format(game.state.flower);
     game.state.Clover3Cost = game.state.Clover3Cost * 1.05;
+	game.state.Clover3Cost10 = game.state.Clover3Cost * (1 - Math.pow(1.05, 10)) / (1 - 1.05);
+	game.state.Clover3Cost100 = game.state.Clover3Cost * (1 - Math.pow(1.05, 100)) / (1 - 1.05);
     document.getElementById('Clover3Cost').innerHTML = format(Math.round(game.state.Clover3Cost));
     }
 };
@@ -140,6 +150,8 @@ function buyC4(){
         document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
         document.getElementById('flower').innerHTML = format(game.state.flower);
     game.state.Clover4Cost = game.state.Clover4Cost * 1.2;
+	    game.state.Clover4Cost10 = game.state.Clover4Cost * (1 - Math.pow(1.2, 10)) / (1 - 1.2);
+	game.state.Clover4Cost100 = game.state.Clover4Cost * (1 - Math.pow(1.2, 100)) / (1 - 1.2);
     document.getElementById('Clover4Cost').innerHTML = format(Math.round(game.state.Clover4Cost));
     }
 };
@@ -186,18 +198,24 @@ function logCloverBuy(cloverType, initalCost, costMult) {
 			    game.state.Clover1Cost = newCost;
 			    document.getElementById('Clover1').innerHTML = format(game.state.Clover1);
 			    document.getElementById('Clover1Cost').innerHTML = format(Math.round(newCost));
+			    game.state.Clover1Cost10 = game.state.Clover1Cost * (1 - Math.pow(1.03, 10)) / (1 - 1.03);
+	                    game.state.Clover1Cost100 = game.state.Clover1Cost * (1 - Math.pow(1.03, 100)) / (1 - 1.03);
 			    break;
 		    case 3:
 			    game.state.Clover3 += quo;
 			    game.state.Clover3Cost = newCost;
 			    document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
 			    document.getElementById('Clover3Cost').innerHTML = format(Math.round(newCost));
+			    game.state.Clover3Cost10 = game.state.Clover3Cost * (1 - Math.pow(1.05, 10)) / (1 - 1.05);
+	                    game.state.Clover3Cost100 = game.state.Clover3Cost * (1 - Math.pow(1.05, 100)) / (1 - 1.05);
 			    break;
 		    case 4:
 			    game.state.Clover4 += quo;
 			    game.state.Clover4Cost = newCost;
 			    document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
 			    document.getElementById('Clover4Cost').innerHTML = format(Math.round(newCost));
+			    game.state.Clover4Cost10 = game.state.Clover4Cost * (1 - Math.pow(1.2, 10)) / (1 - 1.2);
+	                    game.state.Clover4Cost100 = game.state.Clover4Cost * (1 - Math.pow(1.03, 100)) / (1 - 1.2);
 			    break;
 	    }
 	    game.state.flower -= newCost / (geoConst);
@@ -205,6 +223,57 @@ function logCloverBuy(cloverType, initalCost, costMult) {
 	}
 }
 
+
+function buy10(cloverType) {
+	switch(cloverType) {
+		case 1: 
+			if(game.state.flower >= game.state.Clover1Cost * (1 - Math.pow(1.03, 10)) / (1 - 1.03)) {
+				for(i = 0; i < 10; i++) {
+					buyC1();
+				}
+			}
+			break;
+		case 3: 
+			if(game.state.flower >= game.state.Clover3Cost * (1 - Math.pow(1.05, 10)) / (1 - 1.05)) {
+				for(i = 0; i < 10; i++) {
+					buyC3();
+				}
+			}
+			break;
+		case 4: 
+			if(game.state.flower >= game.state.Clover4Cost * (1 - Math.pow(1.2, 10)) / (1 - 1.2)) {
+				for(i = 0; i < 10; i++) {
+					buyC4();
+				}
+			}
+			break;
+	}
+}
+function buy100(cloverType) {
+	switch(cloverType) {
+		case 1: 
+			if(game.state.flower >= game.state.Clover1Cost * (1 - Math.pow(1.03, 100)) / (1 - 1.03)) {
+				for(i = 0; i < 100; i++) {
+					buyC1();
+				}
+			}
+			break;
+		case 3: 
+			if(game.state.flower >= game.state.Clover3Cost * (1 - Math.pow(1.05, 100)) / (1 - 1.05)) {
+				for(i = 0; i < 100; i++) {
+					buyC3();
+				}
+			}
+			break;
+		case 4: 
+			if(game.state.flower >= game.state.Clover4Cost * (1 - Math.pow(1.2, 100)) / (1 - 1.2)) {
+				for(i = 0; i < 100; i++) {
+					buyC4();
+				}
+			}
+			break;
+	}
+}
 
 function maxC1() {
 	if(game.state.flower > game.state.Clover1Cost * 1e10) {
@@ -252,6 +321,7 @@ setInterval(function() {
     UpdateAverageFlowerPerSecond();
     UpdateFlowerPerClick();
 
+	
 	if (Math.floor(game.state.Clover1Cost) <= game.state.flower) {
 		document.getElementById("C1B").className = "green";
 		document.getElementById("M1").className = "green";
@@ -259,6 +329,11 @@ setInterval(function() {
 		document.getElementById("C1B").className = "red";
 		document.getElementById("M1").className = "red";
 	}
+	if(Math.floor(game.state.Clover1Cost10 <= game.state.flower) {
+	   document.getElementById("C1,10").className = "green";
+	   } else {
+	   document.getElementById("C1,10").className = "red";
+	   }
 	if (Math.floor(game.state.Clover3Cost) <= game.state.flower) {
 		document.getElementById("C3B").className = "green";
 	} else {
@@ -358,12 +433,18 @@ function hardReset() {
 	game.state.flower = 0;
 	game.state.Clover1 = 0;
 	game.state.Clover1Cost = 40;
+	game.state.Clover1Cost10 = 40 * (1 - Math.pow(1.03, 10)) / (1 - 1.03);
+	game.state.Clover1Cost100 = 40 * (1 - Math.pow(1.03, 100)) / (1 - 1.03);
 	game.state.Clover1Mult = 1;
 	game.state.Clover3 = 0;
 	game.state.Clover3Cost = 2000;
+	game.state.Clover3Cost10 = 2000 * (1 - Math.pow(1.05, 10)) / (1 - 1.05);
+	game.state.Clover3Cost100 = 2000 * (1 - Math.pow(1.05, 100)) / (1 - 1.05);
 	game.state.Clover3Mult = 1;
 	game.state.Clover4 = 0;
 	game.state.Clover4Cost = 2e7;
+	game.state.Clover4Cost10 = 2e7 * (1 - Math.pow(1.2, 10)) / (1 - 1.2);
+	game.state.Clover4Cost100 = 2e7 * (1 - Math.pow(1.2, 100)) / (1 - 1.2);
 	game.state.Clover4Mult = 1;
 	game.state.tap = 1;
 	game.state.upgrades = new Array(upgList.length);

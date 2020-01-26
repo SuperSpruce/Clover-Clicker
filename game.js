@@ -61,6 +61,12 @@ let upgList = [
 	new Upgrade('Billionaire Upgrade', 12, 1e9, 'You get 3x as many flowers from all sources'),
 ]
 
+
+
+// ========================================================================================
+
+
+
 var game = {
 	state: {
 		flower: 0,
@@ -164,18 +170,45 @@ function UpdateClover4Mult(){
 
 
 function logBase(base, input) {
-	return Math.log(input) / Math.log(base)
+	return Math.log(input) / Math.log(base);
 }
 
-function logCloverBuy(initalCost, costMult) {
+function logCloverBuy(cloverType, initalCost, costMult) {
 	var quo = game.state.flower / initalCost;
-	quo /= 
+	var geoConst = 1 - (1 / costMult);
+	quo = Math.floor(logBase(costMult, quo * geoConst));
+	
+	if(quo > 0) {
+	    var newCost = initalCost * Math.pow(costMult, quo);
+	    switch(cloverType) {
+		    case 1: 
+			    game.state.Clover1 += quo;
+			    game.state.Clover1Cost = newCost;
+			    document.getElementById('Clover1').innerHTML = format(game.state.Clover1);
+			    document.getElementById('Clover1Cost').innerHTML = format(Math.round(newCost));
+			    break;
+		    case 3:
+			    game.state.Clover3 += quo;
+			    game.state.Clover3Cost = newCost;
+			    document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
+			    document.getElementById('Clover3Cost').innerHTML = format(Math.round(newCost));
+			    break;
+		    case 4:
+			    game.state.Clover4 += quo;
+			    game.state.Clover4Cost = newCost;
+			    document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
+			    document.getElementById('Clover4Cost').innerHTML = format(Math.round(newCost));
+			    break;
+	    }
+	    game.state.flower -= newCost / (geoConst * costMult);
+	    document.getElementById('flower').innerHTML = format(game.state.flower);
+	}
 }
 
 
 function maxC1() {
 	if(game.state.flower > game.state.Clover1Cost * 1e10) {
-		//to be filled in when we have more flowers to burn
+		logCloverBuy(1, Clover1Cost, 1.03);
 	}
 	else {
 		while(game.state.flower >= game.state.Clover1Cost) {
@@ -185,7 +218,7 @@ function maxC1() {
 }
 function maxC3() {
 	if(game.state.flower > game.state.Clover3Cost * 1e10) {
-		//to be filled in when we have more flowers to burn
+		logCloverBuy(3, Clover3Cost, 1.05);
 	}
 	else {
 		while(game.state.flower >= game.state.Clover3Cost) {
@@ -195,7 +228,7 @@ function maxC3() {
 }
 function maxC4() {
 	if(game.state.flower > game.state.Clover4Cost * 1e10) {
-		//to be filled in when we have more flowers to burn
+		logCloverBuy(4, Clover4Cost, 1.2);
 	}
 	else {
 		while(game.state.flower >= game.state.Clover4Cost) {

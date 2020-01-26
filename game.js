@@ -259,12 +259,12 @@ setInterval(function() {
 		document.getElementById("C1B").className = "red";
 		document.getElementById("M1").className = "red";
 	}
-	if (Math.floor(game.state.Clover3Cost <= game.state.flower) {
+	if (Math.floor(game.state.Clover3Cost) <= game.state.flower) {
 		document.getElementById("C3B").className = "green";
 	} else {
 	        document.getElementById("C3B").className = "red";
         }
-	if (Math.floor(game.state.Clover4Cost <= game.state.flower) {
+	if (Math.floor(game.state.Clover4Cost) <= game.state.flower) {
 		document.getElementById("C4B").className = "green";
 	} else {
 		document.getElementById("C4B").className = "red";

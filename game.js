@@ -99,7 +99,7 @@ var AverageFlowerPerSecond;
 var FlowerPerClick;
 
 function MakeFlowersOutOfThinAir(C0){
-    game.state.flower += C0;
+    game.state.flower = Math.round(game.state.flower + C0);
     document.getElementById("flower").innerHTML = format(game.state.flower);
 };
 
@@ -107,7 +107,7 @@ function buyC1(){
     //var C1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));     //works out the cost of this One Leaf Clover
     if(game.state.flower >= Math.round(game.state.Clover1Cost)){                                   //checks that the player can afford the One Leaf Clover
         game.state.Clover1 = game.state.Clover1 + 1;                                   //increases number of One Leaf Clovers
-    	game.state.flower = game.state.flower - game.state.Clover1Cost;                          //removes the flowers spent
+    	game.state.flower = game.state.flower - Math.round(game.state.Clover1Cost);                          //removes the flowers spent
         document.getElementById('Clover1').innerHTML = format(game.state.Clover1);  //updates the number of One Leaf Clovers for the user
         document.getElementById('flower').innerHTML = format(game.state.flower);  //updates the number of flowers for the user
     game.state.Clover1Cost = game.state.Clover1Cost * 1.03;       //works out the cost of the next One Leaf Clover
@@ -121,7 +121,7 @@ setInterval(function() {
 function buyC3(){
     if(game.state.flower >= Math.round(game.state.Clover3Cost)){
         game.state.Clover3 = game.state.Clover3 + 1;
-    	game.state.flower = game.state.flower - game.state.Clover3Cost;
+    	game.state.flower = game.state.flower - Math.round(game.state.Clover3Cost);
         document.getElementById('Clover3').innerHTML = format(game.state.Clover3);
         document.getElementById('flower').innerHTML = format(game.state.flower);
     game.state.Clover3Cost = game.state.Clover3Cost * 1.05;
@@ -136,7 +136,7 @@ setInterval(function(){
 function buyC4(){
     if(game.state.flower >= Math.round(game.state.Clover4Cost)){
         game.state.Clover4 = game.state.Clover4 + 1;
-    	game.state.flower = game.state.flower - game.state.Clover4Cost;
+    	game.state.flower = game.state.flower - Math.round(game.state.Clover4Cost);
         document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
         document.getElementById('flower').innerHTML = format(game.state.flower);
     game.state.Clover4Cost = game.state.Clover4Cost * 1.2;
@@ -252,15 +252,15 @@ setInterval(function() {
     UpdateAverageFlowerPerSecond();
     UpdateFlowerPerClick();
 	//A little thing I tried
-	if (Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1)) <= game.state.flower) {
-		document.getElementById("C1B").className = "green"
-	} else document.getElementById("C1B").className = "red"
-	if (Math.floor(game.state.Clover3Cost * Math.pow(1.05,game.state.Clover3)) <= game.state.flower) {
-		document.getElementById("C3B").className = "green"
-	} else document.getElementById("C3B").className = "red"
-	if (Math.floor(game.state.Clover4Cost * Math.pow(1.2,game.state.Clover4)) <= game.state.flower) {
-		document.getElementById("C4B").className = "green"
-	} else document.getElementById("C4B").className = "red"
+	if (Math.floor(game.state.Clover1Cost) <= game.state.flower) {
+		document.getElementById("C1B").className = "green";
+	} else document.getElementById("C1B").className = "red";
+	if (Math.floor(game.state.Clover3Cost <= game.state.flower) {
+		document.getElementById("C3B").className = "green";
+	} else document.getElementById("C3B").className = "red";
+	if (Math.floor(game.state.Clover4Cost <= game.state.flower) {
+		document.getElementById("C4B").className = "green";
+	} else document.getElementById("C4B").className = "red";
     for (let i of upgList) i.updateButton();
     game.state.Clover1Mult = 1;
     game.state.Clover3Mult = 1;

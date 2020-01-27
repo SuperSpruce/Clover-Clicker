@@ -215,7 +215,7 @@ function logCloverBuy(cloverType, initalCost, costMult) {
 			    document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
 			    document.getElementById('Clover4Cost').innerHTML = format(Math.round(newCost));
 			    game.state.Clover4Cost10 = game.state.Clover4Cost * (1 - Math.pow(1.2, 10)) / (1 - 1.2);
-	                    game.state.Clover4Cost100 = game.state.Clover4Cost * (1 - Math.pow(1.03, 100)) / (1 - 1.2);
+	                    game.state.Clover4Cost100 = game.state.Clover4Cost * (1 - Math.pow(1.2, 100)) / (1 - 1.2);
 			    break;
 	    }
 	    game.state.flower -= newCost / (geoConst);
@@ -329,21 +329,53 @@ setInterval(function() {
 		document.getElementById("C1B").className = "red";
 		document.getElementById("M1").className = "red";
 	}
-	if(Math.floor(game.state.Clover1Cost10 <= game.state.flower) {
+	if(Math.floor(game.state.Clover1Cost10 <= game.state.flower)) {
 	   document.getElementById("C1,10").className = "green";
 	   } else {
 	   document.getElementById("C1,10").className = "red";
 	   }
+	if(Math.floor(game.state.Clover1Cost100 <= game.state.flower)) {
+	   document.getElementById("C1,100").className = "green";
+	   } else {
+	   document.getElementById("C1,100").className = "red";
+	   }
+	
 	if (Math.floor(game.state.Clover3Cost) <= game.state.flower) {
 		document.getElementById("C3B").className = "green";
+		document.getElementById("M3").className = "green";
 	} else {
-	        document.getElementById("C3B").className = "red";
-        }
+		document.getElementById("C3B").className = "red";
+		document.getElementById("M3").className = "red";
+	}
+	if(Math.floor(game.state.Clover3Cost10 <= game.state.flower)) {
+	   document.getElementById("C3,10").className = "green";
+	   } else {
+	   document.getElementById("C3,10").className = "red";
+	   }
+	if(Math.floor(game.state.Clover3Cost100 <= game.state.flower)) {
+	   document.getElementById("C3,100").className = "green";
+	   } else {
+	   document.getElementById("C3,100").className = "red";
+	   }
+	
 	if (Math.floor(game.state.Clover4Cost) <= game.state.flower) {
 		document.getElementById("C4B").className = "green";
+		document.getElementById("M4").className = "green";
 	} else {
 		document.getElementById("C4B").className = "red";
+		document.getElementById("M4").className = "red";
 	}
+	if(Math.floor(game.state.Clover4Cost10 <= game.state.flower)) {
+	   document.getElementById("C4,10").className = "green";
+	   } else {
+	   document.getElementById("C4,10").className = "red";
+	   }
+	if(Math.floor(game.state.Clover4Cost100 <= game.state.flower)) {
+	   document.getElementById("C4,100").className = "green";
+	   } else {
+	   document.getElementById("C4,100").className = "red";
+	   }
+	
     for (let i of upgList) i.updateButton();
 
     game.state.Clover1Mult = 1;

@@ -85,7 +85,8 @@ var game = {
 		Clover4Cost10: 2e7 * (1 - Math.pow(1.2, 10)) / (1 - 1.2),
 		Clover4Cost100: 2e7 * (1 - Math.pow(1.2, 100)) / (1 - 1.2),
 		Clover4Mult: 1,
-		tap: 1
+		tap: 1,
+		sec_now: date_get_second(date_current_datetime())
 	}
 };
 
@@ -402,9 +403,29 @@ setInterval(function() {
 	document.getElementById('Clover1P').innerHTML = format(game.state.Clover1Mult * game.state.Clover1);
 	document.getElementById('Clover3P').innerHTML = format(Math.round(game.state.Clover3Mult * game.state.Clover3 * 16.6666666666667));
 	document.getElementById('Clover4P').innerHTML = format(game.state.Clover4Mult * game.state.Clover4 * 1500);
+	
+	game.state.sec_now = date_get_second(date_current_datetime()); 
 }, 33);
 
 
+
+
+function simulateTime(seconds) {
+	game.state.Clover1Mult = 1;
+    game.state.Clover3Mult = 1;
+    game.state.Clover4Mult = 1;
+    game.state.tap = 1;
+	
+	for( k = 0; k < 4; k++) {
+		if (game.state.upgrades[k]) game.state.Clover1Mult *= 2;
+    }
+	if (game.state.upgrades[4]) game.state.Clover3Mult *= 3;
+	if (game.state.upgrades[9]) multiplyEverything(2.5);
+	if (game.state.upgrades[10]) multiplyEverything(2);
+	if (game.state.upgrades[11]) multiplyEverything(2);
+	if (game.state.upgrades[12]) multiplyEverything(3);
+	game.state.flower += Math.round(seconds * (game.state.Clover1 * game.state.Clover1Mult + (16.6666667 * game.state.Clover3 * game.state.Clover3Mult) + 1500 * game.state.Clover4 * game.state.Clover4Mult));
+}
 
 function multiplyEverything(a) {
 	game.state.tap *= a;
@@ -440,6 +461,8 @@ function load() {
     document.getElementById('Clover3Cost').innerHTML = format(Math.floor(game.state.Clover3Cost));
     document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
     document.getElementById('Clover4Cost').innerHTML = format(Math.floor(game.state.Clover4Cost));
+	
+	simulateTime(date_get_second(date_current_datetime()) - game.state.sec_now);
 	
 	if(game.state.flower == 0 && game.state.Clover1 == 0 && game.state.Clover3 == 0 && game.state.Clover4 == 0)
 	{
@@ -479,6 +502,7 @@ function hardReset() {
 	game.state.Clover4Cost100 = 2e7 * (1 - Math.pow(1.2, 100)) / (1 - 1.2);
 	game.state.Clover4Mult = 1;
 	game.state.tap = 1;
+	game.state.sec_now = date_get_second(date_current_datetime());
 	game.state.upgrades = new Array(upgList.length);
 	game.state.upgrades.fill(false);
 	

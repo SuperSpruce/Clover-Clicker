@@ -86,7 +86,7 @@ var game = {
 		Clover4Cost100: 2e7 * (1 - Math.pow(1.2, 100)) / (1 - 1.2),
 		Clover4Mult: 1,
 		tap: 1,
-		sec_now: date_get_second(date_current_datetime())
+		lastTick: Date.now()
 	}
 };
 
@@ -404,7 +404,7 @@ setInterval(function() {
 	document.getElementById('Clover3P').innerHTML = format(Math.round(game.state.Clover3Mult * game.state.Clover3 * 16.6666666666667));
 	document.getElementById('Clover4P').innerHTML = format(game.state.Clover4Mult * game.state.Clover4 * 1500);
 	
-	game.state.sec_now = date_get_second(date_current_datetime()); 
+	game.state.lastTick = Date.now(); 
 }, 33);
 
 
@@ -502,7 +502,7 @@ function hardReset() {
 	game.state.Clover4Cost100 = 2e7 * (1 - Math.pow(1.2, 100)) / (1 - 1.2);
 	game.state.Clover4Mult = 1;
 	game.state.tap = 1;
-	game.state.sec_now = date_get_second(date_current_datetime());
+	game.state.lastTick = Date.now();
 	game.state.upgrades = new Array(upgList.length);
 	game.state.upgrades.fill(false);
 	

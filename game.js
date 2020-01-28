@@ -454,6 +454,8 @@ function load() {
     game = JSON.parse(atob(localStorage.cc));
 
     transformToDecimal(game);
+	simulateTime((Date.now() - game.state.lastTick) / 1000);
+	
     document.getElementById('flower').innerHTML = format(game.state.flower);
     document.getElementById('Clover1').innerHTML = format(game.state.Clover1);
     document.getElementById('Clover1Cost').innerHTML = format(Math.floor(game.state.Clover1Cost));
@@ -461,8 +463,6 @@ function load() {
     document.getElementById('Clover3Cost').innerHTML = format(Math.floor(game.state.Clover3Cost));
     document.getElementById('Clover4').innerHTML = format(game.state.Clover4);
     document.getElementById('Clover4Cost').innerHTML = format(Math.floor(game.state.Clover4Cost));
-	
-	simulateTime(date_get_second(date_current_datetime()) - game.state.sec_now);
 	
 	if(game.state.flower == 0 && game.state.Clover1 == 0 && game.state.Clover3 == 0 && game.state.Clover4 == 0)
 	{

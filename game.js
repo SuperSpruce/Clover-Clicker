@@ -454,7 +454,7 @@ function load() {
     game = JSON.parse(atob(localStorage.cc));
 
     transformToDecimal(game);
-	simulateTime((Date.now() - game.state.lastTick) / 1000);
+	simulateTime(((Date.now() - 420) - game.state.lastTick) / 1000);
 	
     document.getElementById('flower').innerHTML = format(game.state.flower);
     document.getElementById('Clover1').innerHTML = format(game.state.Clover1);
@@ -482,7 +482,7 @@ for (let i of upgList) i.createButton();
 
 setInterval(function(){
 	save();
-}, 15000);
+}, 6969);
 
 function hardReset() {
 	game.state.flower = 0;

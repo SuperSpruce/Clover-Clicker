@@ -108,7 +108,7 @@ var FlowerPerClick;
 function MakeFlowersOutOfThinAir(C0){
     game.state.flower = Math.round(game.state.flower + C0);
     document.getElementById("flower").innerHTML = format(game.state.flower);
-};
+}
 
 function buyC1(){
     //var C1C = Math.floor(game.state.Clover1Cost * Math.pow(1.03,game.state.Clover1));     //works out the cost of this One Leaf Clover
@@ -122,7 +122,7 @@ function buyC1(){
 	game.state.Clover1Cost100 = game.state.Clover1Cost * (1 - Math.pow(1.03, 100)) / (1 - 1.03);
         document.getElementById('Clover1Cost').innerHTML = format(Math.round(game.state.Clover1Cost));  //updates the One Leaf Clover cost for the user
     }
-};
+}
 
 setInterval(function() {
 	MakeFlowersOutOfThinAir(game.state.Clover1 * game.state.Clover1Mult);}, 1000);
@@ -138,7 +138,7 @@ function buyC3(){
 	game.state.Clover3Cost100 = game.state.Clover3Cost * (1 - Math.pow(1.05, 100)) / (1 - 1.05);
     document.getElementById('Clover3Cost').innerHTML = format(Math.round(game.state.Clover3Cost));
     }
-};
+}
 
 setInterval(function(){
 	MakeFlowersOutOfThinAir(game.state.Clover3 * game.state.Clover3Mult * 50)
@@ -155,7 +155,7 @@ function buyC4(){
 	game.state.Clover4Cost100 = game.state.Clover4Cost * (1 - Math.pow(1.2, 100)) / (1 - 1.2);
     document.getElementById('Clover4Cost').innerHTML = format(Math.round(game.state.Clover4Cost));
     }
-};
+}
 	
 setInterval(function(){
 	MakeFlowersOutOfThinAir(game.state.Clover4 * game.state.Clover4Mult * 6000)
@@ -164,21 +164,21 @@ setInterval(function(){
 
 function UpdateAverageFlowerPerSecond(){
 	document.getElementById('AverageFlowerPerSecond').innerHTML = format(AverageFlowerPerSecond);
-};
+}
 
 function UpdateFlowerPerClick(){
 	document.getElementById('FlowerPerClick').innerHTML = format(FlowerPerClick);
-};
+}
 
 function UpdateClover1Mult(){
 	document.getElementById('Clover1Mult').innerHTML = format(game.state.Clover1Mult);
-};
+}
 function UpdateClover3Mult(){
 	document.getElementById('Clover3Mult').innerHTML = format(50 * game.state.Clover3Mult);
-};
+}
 function UpdateClover4Mult(){
 	document.getElementById('Clover4Mult').innerHTML = format(6000 * game.state.Clover4Mult);
-};
+}
 
 
 

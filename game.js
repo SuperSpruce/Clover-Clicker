@@ -76,6 +76,7 @@ var game = {
 		tap: 1
 	}
 };
+initUpgrades();
 
 
 
@@ -225,6 +226,12 @@ function tab(tab) {
 	document.getElementById("changelogTab").style.display = "none"
 	document.getElementById(tab).style.display = "inline-block"
 }
+
+function initUpgrades() {
+	game.state.upgrades = new Array(upgList.length);
+	game.state.upgrades.fill(false);
+}
+
 // go to a tab for the first time, so not all show
 tab("cloverTab")
 
@@ -235,6 +242,11 @@ function save() {
 function load() {
     if(!localStorage.cc) return;
     game = JSON.parse(atob(localStorage.cc));
+
+    //fallback
+    if(!game.state.upgrades){
+    	initUpgrades();
+	}
 
     transformToDecimal(game);
     document.getElementById('flower').innerHTML = format(game.state.flower);
@@ -272,8 +284,7 @@ function hardReset() {
 	game.state.Clover4Cost = 2e7;
 	game.state.Clover4Mult = 1;
 	game.state.tap = 1;
-	game.state.upgrades = new Array(upgList.length);
-	game.state.upgrades.fill(false);
+	initUpgrades();
 	
 	document.getElementById('flower').innerHTML = game.state.flower;
         document.getElementById('Clover1').innerHTML = game.state.Clover1;

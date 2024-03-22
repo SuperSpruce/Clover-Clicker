@@ -229,12 +229,12 @@ function tab(tab) {
 tab("cloverTab")
 
 function save() {
-    localStorage.cc = btoa(JSON.stringify(game));
+    localStorage.CloverClicker = btoa(JSON.stringify(game));
 }
 
 function load() {
-    if(!localStorage.cc) return;
-    game = JSON.parse(atob(localStorage.cc));
+    if(!localStorage.CloverClicker) return;
+    game = JSON.parse(atob(localStorage.CloverClicker));
 
     transformToDecimal(game);
     document.getElementById('flower').innerHTML = format(game.state.flower);
